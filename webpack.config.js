@@ -1,14 +1,14 @@
-const HtmlWebPackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
 const path = require("path");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 module.exports = {
     mode: 'development',
-    entry: './client/index.tsx',
+    entry: './src/index.tsx',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        publicPath: '/dist/',
+        publicPath: '/',
         filename: 'bundle.js'
     },
 
@@ -33,20 +33,35 @@ module.exports = {
                     
                 }
             },
+            
             {
                 test: /\.css$/,
                 use: [ 'style-loader', 'css-loader'] 
             },
+            {
+                test: /\.(png|jpg|jpeg|gif|svg)$/i,
+                type: 'asset/resource',
+              },
            
         ]
     },
+    devServer: {
+        static: {
+          directory: path.join(__dirname, "dist"), //gives an absolute path of the resource that is going to serve
+        },
+        compress: true,
+        open: true,
+        hot: true,
+        port: 8080,
+      },
+      plugins: [
+        new HtmlWebpackPlugin({
+          template: './index.html', // Adjust this path if your HTML file is located elsewhere.
+        }),
+      ],
+    
     resolve: {
         extensions: ['.jsx', '.js', '.tsx', '.ts']
     },
-    plugins: [
-        new HtmlWebPackPlugin({
-            title: 'Development',
-            template: 'index.html'
-        })
-    ]  
+   
 }

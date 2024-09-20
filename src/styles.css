@@ -1,0 +1,301 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden; /* Prevent unnecessary scrolling */
+}
+
+
+.LoginNavbar{
+    display: flex;
+    height: 10vh;
+    flex-basis: 100%;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid orange;
+    font-size: 1em;
+    font-family:'Courier New', Courier, monospace;
+}
+
+.HomeNavbar{
+    display: flex;
+    height: 9vh;
+    flex-basis: 100%;
+    align-items: center;
+    justify-content: space-between;
+    /* border-bottom: 3px solid orange; */
+    font-size: 1em;
+    font-family:'Courier New', Courier, monospace;
+    background-color: rgb(181, 62, 181);
+  
+}
+
+.HomeNavbar h1{
+    display: flex;
+    align-items: center;
+    margin-left: 5%;
+    
+}
+
+.HomeNavbar button{
+    margin-right: 5%;
+    background-color: orange;
+    border: none;
+    cursor: pointer;
+ font-family: 'Courier New', Courier, monospace;
+ font-weight: bolder;
+ font-size: 1em;
+ padding: 10px;
+ border-radius: 10px;
+}
+
+
+.left{
+    width: 40%;
+    height: 50%;
+    margin-bottom: 15%;
+    position: relative;
+
+}
+
+.left img {
+    width: 19vw; /* Relative to viewport width */
+    height: 19vw; /* Keep it circular by maintaining equal width and height */
+    border-radius: 50%;
+    position: absolute;
+    border: 2px solid orange;
+    opacity: 0;
+    animation: fadeIn 1.5s ease forwards;
+  }
+  
+  /* Adjust the positioning of each image to create overlap */
+  .left img:nth-child(1) {
+    top: -2vw;
+    left: 0;
+    animation-delay: 0s;
+  }
+  
+  .left img:nth-child(2) {
+    top: 2vw;
+    left: 15vw;
+    animation-delay: 0.6s;
+  }
+  
+  .left img:nth-child(3) {
+    top: 15vw;
+    left: 0;
+    animation-delay: 1.2s;
+  }
+  
+  .left img:nth-child(4) {
+    top: 18vw;
+    left: 15vw;
+    animation-delay: 1.8s;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(2vw); /* Start slightly below */
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0); /* End at the original position */
+    }
+  }
+  
+
+.LoginNavbar img, .HomeNavbar img{
+    max-width: 75px; /* Image will not exceed its container width */
+    height: auto; 
+    margin-left: 10px;
+}
+
+.loginPage{
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 18vh);
+    align-items: center;
+    justify-content: space-evenly;
+    border: 1 px solid black;
+    
+
+}
+
+.credentialsContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    height: 50%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Adding the shadow */
+    transition: box-shadow 0.3s ease-in-out;
+    margin-bottom: 40px;
+}
+
+.credentialsContainer:hover {
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+.credentialsContainer form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+ 
+}
+
+.credentialsContainer input{
+    width: 100%;
+    border: 1px solid #ccc;  
+    box-sizing: border-box;
+    font-size: 16px;   
+    margin: 10px auto; /* Centers the elements horizontally */
+    padding: 10px;
+    border-radius: 5px;
+
+}
+
+.credentialsContainer label,
+.credentialsContainer button {
+    width: 90%;
+    font-size: 16px;    
+}
+
+
+
+.credentialsContainer button{
+ width: 90%;
+ cursor: pointer;
+ border: none;
+ background-color: rgb(188, 47, 188);
+ color:white;
+ font-family: 'Courier New', Courier, monospace;
+ font-weight: bolder;
+ transition: background-color 0.3s ease; /* Smooth transition when hover */
+ padding: 10px;
+ border-radius: 5px;
+ margin-top: 10px;
+
+}
+
+.credentialsContainer button:hover, .HomeNavbar button:hover {
+    background-color: #ce80f3; /* Lighter shade of orange on hover */
+}
+
+
+#loginCalltoAction{
+    font-weight: bold;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 160%;
+    color: orange;
+    text-align: center;
+    margin-top: 0;
+}
+
+
+.footer{
+    background-color: #ce80f3;
+    height: 8vh;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+    flex-basis: 100%;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    
+}
+
+#typewriter-text {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    opacity: 0; /* Start invisible */
+    animation: typing 5s steps(40, end), blink-caret 0.75s step-end infinite;
+    animation-delay: 1.5s; /* Delay before starting the typing animation */
+    animation-iteration-count: infinite; /* Make the animation repeat */
+    max-width: fit-content;
+}
+
+
+@keyframes typing {
+    0% {
+        width: 0;
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    50% {
+        width: 70%; /* Typing effect completes by 90% */
+    }
+    100% {
+        width: 100%;
+        opacity: 1; /* Text stays visible until the fade-out */
+    }
+}
+
+
+.footer img {
+  width: 3vw;
+  height: auto; /* This ensures the aspect ratio is maintained */
+  margin-left: 10px; 
+}
+
+.MainPage{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+  row-gap: 20px; /* Spacing between cards */
+  height: calc(100vh - 9vh); /* Adjust height for header or other elements */
+  justify-items: center;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 20px;
+  column-gap: 0; /* Adjust this value to reduce horizontal space */
+
+} 
+
+.dogCards{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border: 2px solid rgb(188, 47, 188);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 25vw; /* Fixed width for the card */
+    height: 50vh; 
+ 
+}
+
+
+.dogCards h2, .dogCards p {
+    margin: 1vh 0;
+    text-align: center;
+    font-size: 1.5em; /* Dynamic font size based on viewport */
+    overflow-wrap: break-word; /* Ensures text breaks properly */
+    white-space: normal; /* Allows text to wrap to the next line */
+    overflow: hidden; /* Prevent overflow of content */
+    text-overflow: ellipsis; /* Adds ellipsis if text is too long */
+  }
+.dogCards img {
+    width: 100%; /* The image takes up the full width of the card */
+    height: 50%; /* Fixed height for all images */
+    object-fit: cover; /* Ensures the image covers the space without distortion */
+    border-radius: 8px;
+  }
+
+ 
+  .container{
+    height: 100vh;
+    width: 100vw;
+padding-bottom: 1000px;
+
+  }
