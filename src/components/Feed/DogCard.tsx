@@ -5,7 +5,7 @@ interface DogProps {
     breed: string,
     image: string,
     name: string,
-    zip_code: string
+    zip_code: string,
 }
 
 export default function DogCard({age, breed, image, name, zip_code}: DogProps){
