@@ -16,6 +16,7 @@ export default function DogCard({age, breed, image, name, zip_code}: DogProps){
             <p>Breed: {breed}</p>
             <p>Age: {age}</p>
             <p>Location: {zip_code}</p>
+           
         </div>
     )
 }
