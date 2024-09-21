@@ -33,9 +33,7 @@ export default function PageFooter({totalPages, nextQuery, setNextQuery, getDogD
         const data = await res.json()
         if(data.prev) setPrevQuery(data.prev)
         setNextQuery(data.next)
-        getDogDetails(data.resultIds, data.prev)
-
-
+        getDogDetails(data.resultIds)
     }
     
     async function handleNextPage(){
@@ -77,13 +75,22 @@ export default function PageFooter({totalPages, nextQuery, setNextQuery, getDogD
         try {
           // Ensure currPage has a valid value; default to 1 if currPage is null or undefined
           const currentPage = currPage ?? 1;
-          
+          let url =''
           // Calculate the 'from' parameter for pagination
-          const from = (currentPage === 1) ? 0 : ((Number(currentPage) - 1) * 12);
+          const from = (currentPage === 1) ? 0 : ((Number(currentPage)) * 12);
           console.log("from", from)
           // Construct the URL with the calculated 'from' value
-          const url = `${BASE_URL}/dogs/search?size=12&breeds=${selectedBreeds}&from=${from}`;
-          
+          url = `${BASE_URL}/dogs/search?size=12&breeds=${selectedBreeds}&from=${from}`;
+
+        if (nextQuery) {
+            // Replace the 'from' parameter with the new value
+            const updatedQueryWithAge = nextQuery.replace(/from=\d+/, `from=${from}`);
+            url = `${BASE_URL}${updatedQueryWithAge}`;
+          }
+
+
+
+
           // Make the fetch request
           const res = await fetch(url, {
             method: 'GET',

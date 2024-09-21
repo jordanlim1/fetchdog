@@ -303,7 +303,8 @@ html, body {
     object-fit: cover; /* Ensures the image covers the space without distortion */
     margin-top: 0;
     border-bottom-right-radius: 20%; /* Curves the bottom of the image */
- 
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
   }
 
  
