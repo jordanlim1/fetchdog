@@ -497,7 +497,7 @@ html, body {
     background-color: #f7f7f7; /* Slightly change the background color */
 }
 
-.favoritePageHeader{
+.favorite-page-header{
     /* border:1px solid black; */
     display: flex;
     justify-content: center;
@@ -506,17 +506,17 @@ html, body {
     box-sizing: border-box;
 }
 
-.favoritesCardHolder{
+.favorites-cardholder{
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 3 cards per row */
     row-gap: 30px; /* Spacing between cards */
-    height: calc(100vh - 25vh); /* Adjust height for header or other elements */
+    height: calc(100vh - 27vh); /* Adjust height for header or other elements */
     justify-items: center;
     overflow-y: auto;
     box-sizing: border-box;
     padding: 20px;
     width: 100%;
-    align-items: center;
+    align-items:flex-start;
     
   } 
 
@@ -532,7 +532,7 @@ html, body {
     width: 20%;
   }
 
-  .navbar-buttons button:hover, .filterSearch:hover, .pagination button:hover, .match-button button:hover{
+  .navbar-buttons button:hover, .filterSearch:hover, .pagination button:hover, .match-button button:hover, .modal-overlay button:hover{
     background-color: rgb(244, 179, 59);
     cursor: pointer;
   }
@@ -549,16 +549,17 @@ html, body {
     align-items: center;
     z-index: 1000; /* Ensure it appears on top */
     border:1px solid black;
+    box-sizing: border-box;
   }
 
   .modal-content{
     display: flex;
     flex-direction: column;
-    height: 30vw;
+    height: fit-content;
     width: 30vw;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(236, 181, 78);
+    background-color: rgb(237, 192, 108);
     padding: 5vh;
     border-radius: 10%;
   }
@@ -572,6 +573,7 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 1.5vh;
   }
 
   .match-button button{
@@ -594,4 +596,21 @@ html, body {
     width: 1.5vw;
     height: auto;
    
+  }
+
+  .modal-overlay button{
+    background-color: orange;
+    border: none;
+    cursor: pointer;
+ font-family: 'Courier New', Courier, monospace;
+ font-weight: bolder;
+ font-size: 1em;
+ padding: 10px;
+ border-radius: 10px;
+ margin-top: 3vh;
+  }
+
+  #logout{
+    font-family:'Courier New', Courier, monospace!important;
+    font-weight: normal !important;
   }

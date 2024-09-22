@@ -8,9 +8,11 @@ import Dog2 from "../../images/dog2.jpg"
 import Dog1 from "../../images/dog1.jpg"
 import { useNavigate } from "react-router"
 import {BASE_URL} from "../../../utils/urls.ts"
+import Logout from "../../Logout.tsx"
 
 export default function Login(){
 const [credentials, setCredentials] = useState({name: "", email: ""})
+const [isVisible, setIsVisible] = useState(false)
 const navigate = useNavigate()
 function handleChange(e: React.ChangeEvent<HTMLInputElement>){
     setCredentials((prev) => ({
@@ -49,6 +51,7 @@ try{
 
     return (
     <div> 
+      {isVisible ?  <><Logout name={credentials.name} email={credentials.email} /></> : null }
         <Navbar />
 
         <div className="login-page">

@@ -68,3 +68,8 @@ export interface ModalProps {
     showModal: boolean,
     onClose: () => void
 }
+
+export interface LogoutProps{
+    name?: string,
+    email?: string
+}

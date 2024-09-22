@@ -20,9 +20,11 @@ export default function App(){
 const [favoriteDogs, setFavoriteDogs] = useState<Dog[]>([])
 
     function addToFavorites(dog: Dog) {
-        if(!favoriteDogs.includes(dog))setFavoriteDogs((prev) => [...prev, dog])
-
-            console.log(dog)
+        const isAlreadyFavorite = favoriteDogs.some(favoriteDog => favoriteDog.id === dog.id);
+    
+        if (!isAlreadyFavorite) {
+            setFavoriteDogs((prev) => [...prev, dog]);
+        }    
     }
 
 
