@@ -59,6 +59,6 @@ export interface PageFooterProps {
 
 }
 
-export interface FavoritesProps {
+export interface FavoriteDogsProps {
     favoriteDogs: Dog[]
 }
