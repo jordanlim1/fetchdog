@@ -1,13 +1,12 @@
 import React, {useState, useEffect} from "react"
-import Navbar from "./LoginNavbar.tsx"
-import Footer from "./Footer.tsx"
+import Navbar from "./LoginNavbar"
+import Footer from "./Footer"
 import Dog4 from "../../images/dog4.png"
-
 import Dog3 from "../../images/dog3.jpg"
 import Dog2 from "../../images/dog2.jpg"
 import Dog1 from "../../images/dog1.jpg"
 import { useNavigate } from "react-router"
-import {BASE_URL} from "../../../utils/urls.ts"
+import {BASE_URL} from "../../../utils/urls"
 export default function Login(){
 const [credentials, setCredentials] = useState({name: "", email: ""})
 const navigate = useNavigate()
