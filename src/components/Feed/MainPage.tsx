@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from "react"
 import { BASE_URL } from "../../../utils/urls"
-import Navbar from "./HomeNavbar"
+import Navbar from "./MainNavbar"
 import DogCard from "./DogCard"
 import PageFooter from "./PageFooter"
 import Filters from "./Filters"
@@ -153,14 +153,14 @@ async function getNewBreeds(){
 
 
     return (
-            <div className="MainPage">
+            <div className="home-page">
                 <Navbar getDogIds={getDogIds} setTotalPages ={setTotalPages} setSelectedBreeds ={setSelectedBreeds}/>
                     <main>
                     <section className="filter">
                         <Filters breeds={breeds} selectedBreeds={selectedBreeds} getNewBreeds ={getNewBreeds} handleSelectionChange={handleSelectionChange} getDogDetails={getDogDetails} setCurrPage={setCurrPage}/>
                     </section>
     
-                    <section className="CardHolder">
+                    <section className="card-holder">
                         {dogs.map((dog: Dog, idx: number) => {
                             const { age, breed, img, name, zip_code } = dog;
                             return (

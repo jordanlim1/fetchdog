@@ -11,10 +11,12 @@ export default function DogCard({age, breed, image, name, zip_code, dog, addToFa
     
    
     return (
-        <div className="dogCards" >
+        <div className="dog-cards" >
 
 
-        <button className="favoriteButton" onClick={() => addToFavorites!(dog!)} >
+{addToFavorites ?  <button className="favoriteButton" onClick={() => addToFavorites!(dog!)} >
+        
+       
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -28,7 +30,7 @@ export default function DogCard({age, breed, image, name, zip_code, dog, addToFa
             strokeWidth="2" 
           />
         </svg>
-        </button>
+        </button> : ""}
             <img src={image} alt={name} />
             <h2>{name}</h2>
             <p>Breed: {breed}</p>

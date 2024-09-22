@@ -39,7 +39,7 @@ try{
     setCredentials({name:"", email: ""})
    }
    else {
-    navigate("/home")
+    navigate("/main")
    }
 
 } catch(err){
@@ -51,7 +51,7 @@ try{
     <div> 
         <Navbar />
 
-        <div className="loginPage">
+        <div className="login-page">
         <div className="left">
             <img src={Dog1} />
             <img src={Dog2}/>
@@ -59,7 +59,7 @@ try{
             <img src={Dog4} />
         </div>
 
-        <div className="credentialsContainer">
+        <div className="credentials-container">
             <p id="loginCalltoAction"> Become part of Fetch today!</p>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="name">

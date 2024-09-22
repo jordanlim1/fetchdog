@@ -30,10 +30,8 @@ export default function PageFooter({totalPages, nextQuery, setNextQuery, getDogD
         if(Number(currPage)  >= totalPages) return -1
         
 
-        console.log("nextpage", currPage)
         setCurrPage(Number(currPage) + 1)
 
-        console.log("in footer", nextQuery)
         const res = await fetch(`${BASE_URL}${nextQuery}`, {
             method: 'GET',
             headers: {
@@ -50,26 +48,18 @@ export default function PageFooter({totalPages, nextQuery, setNextQuery, getDogD
     
 
 
-    // useEffect(() => {
-  
-    //   // Only run if currPage is not an empty string
-    //   if (currPage !== "") {
-    //     getCustomPage();
-    //   }
-    // }, [search]); // Trigger only on currPage change
+    
 
     function handleChange(e: any){
 
         
         const value = e.target.value;
 
-            console.log("value", value)
         if(value > totalPages) {
             alert("Please enter a valid page number")
             return -1
         }
 
-        // If the user deletes or backspaces, make it an empty string
        
         if(value === "") setCurrPage("")
 
@@ -97,7 +87,6 @@ export default function PageFooter({totalPages, nextQuery, setNextQuery, getDogD
 
 
 
-          // Make the fetch request
           const res = await fetch(url, {
             method: 'GET',
             headers: {
@@ -106,7 +95,7 @@ export default function PageFooter({totalPages, nextQuery, setNextQuery, getDogD
             credentials: "include"
           });
       
-          // Check if response is OK
+       
           if (!res.ok) {
             throw new Error(`Error fetching data: ${res.statusText}`);
           }

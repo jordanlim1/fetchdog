@@ -62,3 +62,9 @@ export interface PageFooterProps {
 export interface FavoriteDogsProps {
     favoriteDogs: Dog[]
 }
+
+export interface ModalProps {
+    match: Dog,
+    showModal: boolean,
+    onClose: () => void
+}
