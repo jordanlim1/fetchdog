@@ -44,7 +44,8 @@ export default function Filters({breeds, selectedBreeds, handleSelectionChange, 
       url += `&ageMax=${maxAge}`;
     }
 
-     
+
+    try{ 
         const res = await fetch(url, {
             method: 'GET',
             headers: {
@@ -57,7 +58,9 @@ export default function Filters({breeds, selectedBreeds, handleSelectionChange, 
         const data = await res.json()
         getDogDetails(data.resultIds, data.next, data.total)
       
-        
+    }catch(err){
+        console.log("Error in filter component", err)
+    }
 
     }
 

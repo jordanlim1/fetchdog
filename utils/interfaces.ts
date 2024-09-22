@@ -2,6 +2,8 @@ import React, { SetStateAction } from "react";
 import SelectSearch, {SelectedOptionValue, SelectedOption} from 'react-select-search';
 
 
+
+
 export interface Dog {
     id: string;
     img: string;
@@ -37,7 +39,7 @@ export interface FilterProps{
 
 }
 
-export interface HomeNavBarProps {
+export interface MainNavBarProps {
     getDogIds: () => void,
     setTotalPages: React.Dispatch<SetStateAction<number>>,
     setSelectedBreeds: React.Dispatch<SetStateAction<string[]>>,
@@ -45,7 +47,7 @@ export interface HomeNavBarProps {
 }
 
 export interface MainPageProps {
-    addToFavorites: (dog: Dog) => void
+    addToFavorites: (dog: Dog) => void,
 }
 
 export interface PageFooterProps {
@@ -69,7 +71,5 @@ export interface ModalProps {
     onClose: () => void
 }
 
-export interface LogoutProps{
-    name?: string,
-    email?: string
-}
+
+

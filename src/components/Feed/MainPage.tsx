@@ -25,7 +25,6 @@ useEffect(() => {
 }, [])
 
 async function getDogBreeds(){
-    console.log("im called")
     const res = await fetch(`${BASE_URL}/dogs/breeds`, {
         method: 'GET',
         headers: {
@@ -70,7 +69,6 @@ async function getDogDetails(ids: string[], nextQuery?: string, total?:number){
 
 
     const data: Dog[] = await res.json()
-    console.log("dog details", data)
     const updatedDogs = data.map((dog) => ({
         ...dog, // Spread the existing dog properties
         favorite: false // Add a favorite key with a default value of false
@@ -154,7 +152,7 @@ async function getNewBreeds(){
 
     return (
             <div className="home-page">
-                <Navbar getDogIds={getDogIds} setTotalPages ={setTotalPages} setSelectedBreeds ={setSelectedBreeds}/>
+                <Navbar getDogIds={getDogIds} setTotalPages ={setTotalPages} setSelectedBreeds ={setSelectedBreeds} />
                     <main>
                     <section className="filter">
                         <Filters breeds={breeds} selectedBreeds={selectedBreeds} getNewBreeds ={getNewBreeds} handleSelectionChange={handleSelectionChange} getDogDetails={getDogDetails} setCurrPage={setCurrPage}/>

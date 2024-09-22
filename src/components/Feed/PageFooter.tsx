@@ -7,6 +7,7 @@ export default function PageFooter({totalPages, nextQuery, setNextQuery, getDogD
     //make currPage a string only to clear page number if user focuses on input
     const [prevQuery, setPrevQuery] = useState("")
     const [originalPage, setOriginalPage] = useState(0)
+    const [isTyping, setIsTyping] = useState(false) //disable user from hitting prev or next page if searching for a page 
 
     async function handlePrevPage(){
         if(Number(currPage)  <= 1) return -1
@@ -52,7 +53,7 @@ export default function PageFooter({totalPages, nextQuery, setNextQuery, getDogD
 
     function handleChange(e: any){
 
-        
+        setIsTyping(true)
         const value = e.target.value;
 
         if(value > totalPages) {
@@ -124,7 +125,9 @@ function handleFocus(){
 
 
 function handleBlur(){
-   console.log(currPage, "og:", originalPage)
+
+    setIsTyping(false)
+
    if (Number(currPage === 0) || currPage == "" ) {
     setCurrPage(originalPage);
   } else if (originalPage !== currPage && Number(currPage) >= 1) {
@@ -134,9 +137,9 @@ function handleBlur(){
 
     return(
         <div className="pagination">
-            <button onClick={handlePrevPage}>Prev</button>
+            <button onClick={handlePrevPage} disabled={isTyping}>Prev</button>
             <input onChange={handleChange} value={currPage}   onBlur={handleBlur} onFocus={handleFocus} /> <span> of {totalPages} </span>
-            <button onClick={handleNextPage}>Next</button>
+            <button onClick={handleNextPage} disabled={isTyping}>Next</button>
         </div>
     )
 }
