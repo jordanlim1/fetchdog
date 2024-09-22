@@ -16,7 +16,6 @@ export default function PageFooter({totalPages, nextQuery, setNextQuery, getDogD
     //make currPage a string only to clear page number if user focuses on input
     const [prevQuery, setPrevQuery] = useState("")
     const [originalPage, setOriginalPage] = useState(0)
-    const [search, setSearch] = useState(false)
 
     async function handlePrevPage(){
         if(Number(currPage)  <= 1) return -1
@@ -39,6 +38,8 @@ export default function PageFooter({totalPages, nextQuery, setNextQuery, getDogD
     async function handleNextPage(){
         if(Number(currPage)  >= totalPages) return -1
         
+
+        console.log("nextpage", currPage)
         setCurrPage(Number(currPage) + 1)
 
         console.log("in footer", nextQuery)
@@ -58,17 +59,31 @@ export default function PageFooter({totalPages, nextQuery, setNextQuery, getDogD
     
 
 
-    useEffect(() => {
+    // useEffect(() => {
   
-      // Only run if currPage is not an empty string
-      if (currPage !== "") {
-        getCustomPage();
-      }
-    }, [search]); // Trigger only on currPage change
+    //   // Only run if currPage is not an empty string
+    //   if (currPage !== "") {
+    //     getCustomPage();
+    //   }
+    // }, [search]); // Trigger only on currPage change
 
     function handleChange(e: any){
-        setCurrPage(e.target.value)
-        setSearch(!search)
+
+        
+        const value = e.target.value;
+
+            console.log("value", value)
+        if(value > totalPages) {
+            alert("Please enter a valid page number")
+            return -1
+        }
+
+        // If the user deletes or backspaces, make it an empty string
+       
+        if(value === "") setCurrPage("")
+
+        if(value > 0) setCurrPage(Number(value)); // Set the input to the new number
+        
     }
 
     async function getCustomPage() {
@@ -113,7 +128,6 @@ export default function PageFooter({totalPages, nextQuery, setNextQuery, getDogD
           }
       
           // Fetch dog details
-          console.log('prev', data);
           getDogDetails(data.resultIds, data.next);
       
         } catch (error) {
@@ -122,21 +136,26 @@ export default function PageFooter({totalPages, nextQuery, setNextQuery, getDogD
         }
       }
       
+
+
 function handleFocus(){
     setOriginalPage(Number(currPage))
-    setCurrPage("")
 }
 
-const handleBlur = () => {
-    if (currPage === "") {
-      setCurrPage(currPage);  // Reset to default page if undefined
-    }
+
+function handleBlur(){
+   console.log(currPage, "og:", originalPage)
+   if (Number(currPage === 0) || currPage == "" ) {
+    setCurrPage(originalPage);
+  } else if (originalPage !== currPage && Number(currPage) >= 1) {
+    getCustomPage();
+  }
   };
 
     return(
         <div className="pagination">
             <button onClick={handlePrevPage}>Prev</button>
-            <input onChange={handleChange} value={currPage} onFocus={handleFocus} onBlur={handleBlur} /> <span> of {totalPages} </span>
+            <input onChange={handleChange} value={currPage}   onBlur={handleBlur} onFocus={handleFocus} /> <span> of {totalPages} </span>
             <button onClick={handleNextPage}>Next</button>
         </div>
     )

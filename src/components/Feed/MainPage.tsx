@@ -16,18 +16,23 @@ interface Dog {
     age: number;
     zip_code: string;
     breed: string;
+    favorite: boolean;
   }
   
 
-export default function MainPage(){
+interface MainPageProps {
+    addToFavorites: (dog: Dog) => void
+}
+
+export default function MainPage({addToFavorites}: MainPageProps){
 
 const [dogBreeds, setDogBreeds] = useState<string[]>([])
 const [dogs, setDogs] = useState<Dog[]>([])
 const [selectedBreeds, setSelectedBreeds] = useState<string[]>([])
 const [totalPages, setTotalPages] = useState(1)
 const [currPage, setCurrPage] = useState <number | string>(1)
-
 const [nextPageQuery, setNextPageQuery] = useState("")
+const [showPopup, setShowPopup] = useState(false);
 
 
 useEffect(() => {
@@ -35,21 +40,8 @@ useEffect(() => {
     getDogIds()
 }, [])
 
-//once user selects a breed, fetch new data to update dog card state
-// const isFirstRun = useRef(true); // Tracks if this is the first render
-
-//   useEffect(() => {
-//     // If it's the first run, skip the effect
-//     if (isFirstRun.current) {
-//       isFirstRun.current = false;  // Set the ref to false after the first render
-//       return;
-//     }
-
-//     // Your effect logic here
-//     getNewBreeds();
-//   }, [selectedBreeds]);
-
 async function getDogBreeds(){
+    console.log("im called")
     const res = await fetch(`${BASE_URL}/dogs/breeds`, {
         method: 'GET',
         headers: {
@@ -94,12 +86,16 @@ async function getDogDetails(ids: string[], nextQuery?: string, total?:number){
 
 
     const data: Dog[] = await res.json()
+    console.log("dog details", data)
+    const updatedDogs = data.map((dog) => ({
+        ...dog, // Spread the existing dog properties
+        favorite: false // Add a favorite key with a default value of false
+    }));
     if(nextQuery) setNextPageQuery(nextQuery)
      //for age filter
     if(total) setTotalPages(Math.floor(total / 12) + 1)
-
-        console.log("in details", data, nextQuery)
-    setDogs(data)
+    
+    setDogs(updatedDogs)
 }
 
 
@@ -108,7 +104,6 @@ async function getDogDetails(ids: string[], nextQuery?: string, total?:number){
 function handleSelectionChange(selectedValue: SelectedOptionValue | SelectedOptionValue[], selectedOption: SelectedOption | SelectedOption[]){
     if(selectedValue.toString() !== selectedBreeds[0]) 
     setSelectedBreeds([selectedValue.toString()]);
-    setCurrPage(1)
     //If we want to select multiple breeds
     // if (Array.isArray(selectedValue)) {
     //     const stringValues = selectedValue.map(value => value.toString()); // Convert values to strings
@@ -158,7 +153,6 @@ function handleSelectionChange(selectedValue: SelectedOptionValue | SelectedOpti
 // }
 
 async function getNewBreeds(){
-    console.log("hello")
     const res = await fetch(`${BASE_URL}/dogs/search?size=12&breeds=${selectedBreeds}&sort=name:asc`, {
         method: 'GET',
         headers: {
@@ -169,7 +163,6 @@ async function getNewBreeds(){
 
     const data = await res.json()
     setTotalPages(Math.floor(data.total / 12) + 1)
-    console.log("in new breeds", data)
     setNextPageQuery(data.next)
     getDogDetails(data.resultIds)
 }
@@ -177,31 +170,10 @@ async function getNewBreeds(){
 
     return (
             <div className="MainPage">
-                <Navbar />
+                <Navbar getDogIds={getDogIds} setTotalPages ={setTotalPages} setSelectedBreeds ={setSelectedBreeds}/>
                     <main>
                     <section className="filter">
-                        {/* <div className="filterByBreed">
-                            <img className="paw" src={paw} alt="Paw Icon" />
-                            <SelectSearch
-                                placeholder="Breed"
-                                options={breeds}
-                                search
-                                value={selectedBreeds}
-                                onChange={handleSelectionChange}
-                            />
-                        </div>
-    
-                        <div className="filterByAge">
-                            <img className="paw" src={paw} alt="Paw Icon" />
-                            <label htmlFor="minAge">
-                            <input placeholder="Min Age" type="number" />
-                            </label>
-                            <span> &mdash; </span>
-                            <label htmlFor="maxAge">
-                            <input placeholder="Max Age" type="number" />
-                            </label>
-                        </div> */}
-                        <Filters breeds={breeds} selectedBreeds={selectedBreeds} getNewBreeds ={getNewBreeds} handleSelectionChange={handleSelectionChange} getDogDetails={getDogDetails}/>
+                        <Filters breeds={breeds} selectedBreeds={selectedBreeds} getNewBreeds ={getNewBreeds} handleSelectionChange={handleSelectionChange} getDogDetails={getDogDetails} setCurrPage={setCurrPage}/>
                     </section>
     
                     <section className="CardHolder">
@@ -215,6 +187,9 @@ async function getNewBreeds(){
                                     image={img}
                                     name={name}
                                     zip_code={zip_code}
+                                    dog={dog}
+                                    addToFavorites={addToFavorites}
+                                    
                                 />
                             );
                         })}

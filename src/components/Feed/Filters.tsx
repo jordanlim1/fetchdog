@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect, SetStateAction} from "react"
 import SelectSearch, {SelectedOptionValue, SelectedOption} from 'react-select-search';
 import 'react-select-search/style.css'; 
 import paw from '../../images/paw.png';
@@ -14,10 +14,11 @@ interface FilterProps{
     getNewBreeds: () => void,
     handleSelectionChange: (selectedValue: SelectedOptionValue | SelectedOptionValue[], selectedOption: SelectedOption | SelectedOption[]) => void,
     getDogDetails: (ids: string[], nextQuery?: string | undefined, total?: number | undefined) => void,
+    setCurrPage: React.Dispatch<SetStateAction<number | string>>
 
 }
 
-export default function Filters({breeds, selectedBreeds, handleSelectionChange, getDogDetails, getNewBreeds}: FilterProps){
+export default function Filters({breeds, selectedBreeds, handleSelectionChange, getDogDetails, getNewBreeds, setCurrPage}: FilterProps){
 
 
     const [minAge, setMinAge] = useState("")
@@ -26,15 +27,36 @@ export default function Filters({breeds, selectedBreeds, handleSelectionChange, 
 
     function setAges(e: React.ChangeEvent<HTMLInputElement>){
       const {name, value} = e.target
+      if(Number(value) < 0) {
+        alert("Please enter a valid age")
+        return -1
+      }
       if(name === "minAge") setMinAge(value)
       else if (name === "maxAge") setMaxAge(value)
     }
 
 
-    async function handleAgeFilter(){
+    async function handleFilters(){
 
-     if (minAge){
-        const res = await fetch(`${BASE_URL}/dogs/search?size=12&breeds=${selectedBreeds}&sort=name:asc&ageMin=${minAge}`, {
+
+    setCurrPage(1)
+
+    //if no age requirements, just fetch the breed
+    if(!minAge && !maxAge) return getNewBreeds()
+    
+    let url = `${BASE_URL}/dogs/search?size=12&breeds=${selectedBreeds}&sort=name:asc`;
+
+    // Check for minAge and maxAge to adjust the query string
+    if (minAge && maxAge) {
+      url += `&ageMin=${minAge}&ageMax=${maxAge}`;
+    } else if (minAge) {
+      url += `&ageMin=${minAge}`;
+    } else if (maxAge) {
+      url += `&ageMax=${maxAge}`;
+    }
+
+     
+        const res = await fetch(url, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -44,11 +66,9 @@ export default function Filters({breeds, selectedBreeds, handleSelectionChange, 
 
 
         const data = await res.json()
-        console.log("minage", data)
         getDogDetails(data.resultIds, data.next, data.total)
+      
         
-     }
-    else getNewBreeds()
 
     }
 
@@ -75,7 +95,7 @@ export default function Filters({breeds, selectedBreeds, handleSelectionChange, 
         <label htmlFor="maxAge">
         <input placeholder="Max Age" name="maxAge" type="number" value={maxAge} onChange={setAges}/>
         </label>
-        <button onClick={handleAgeFilter}>Go</button>
+        <button className="filterSearch" onClick={handleFilters} >Search</button>
     </div>
     </>
     )
