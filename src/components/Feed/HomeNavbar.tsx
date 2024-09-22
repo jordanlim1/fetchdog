@@ -1,12 +1,8 @@
 import React, { SetStateAction } from "react"
 import logo from '../../images/logo.png';
+import { HomeNavBarProps } from '../../../utils/interfaces';
 
-interface HomeNavBarProps {
-    getDogIds: () => void,
-    setTotalPages: React.Dispatch<SetStateAction<number>>,
-    setSelectedBreeds: React.Dispatch<SetStateAction<string[]>>,
 
-}
 
 export default function HomeNavbar({getDogIds, setTotalPages, setSelectedBreeds}: HomeNavBarProps){
 

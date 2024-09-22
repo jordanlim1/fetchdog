@@ -1,27 +1,10 @@
 import React, {useState} from "react"
+import { DogCardProps, Dog } from '../../../utils/interfaces';
 
-interface DogProps {
-    age: number,
-    breed: string,
-    image: string,
-    name: string,
-    zip_code: string,
-    dog: Dog,
-    addToFavorites: (dog: Dog) => void
-}
 
-interface Dog {
-    id: string;
-    img: string;
-    name: string;
-    age: number;
-    zip_code: string;
-    breed: string;
-    favorite: boolean;
-  }
   
 
-export default function DogCard({age, breed, image, name, zip_code, dog, addToFavorites}: DogProps){
+export default function DogCard({age, breed, image, name, zip_code, dog, addToFavorites}: DogCardProps){
 
 
 
@@ -31,7 +14,7 @@ export default function DogCard({age, breed, image, name, zip_code, dog, addToFa
         <div className="dogCards" >
 
 
-        <button className="favoriteButton" onClick={() => addToFavorites(dog)} >
+        <button className="favoriteButton" onClick={() => addToFavorites!(dog!)} >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"

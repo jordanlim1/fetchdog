@@ -1,28 +1,12 @@
 import React, {useState, useEffect, useRef} from "react"
-import { BASE_URL } from "../../urls"
+import { BASE_URL } from "../../../utils/urls"
 import Navbar from "./HomeNavbar"
 import DogCard from "./DogCard"
 import PageFooter from "./PageFooter"
 import Filters from "./Filters"
 import SelectSearch, {SelectedOptionValue, SelectedOption} from 'react-select-search';
 import 'react-select-search/style.css'; 
-import paw from '../../images/paw.png';
-
-
-interface Dog {
-    id: string;
-    img: string;
-    name: string;
-    age: number;
-    zip_code: string;
-    breed: string;
-    favorite: boolean;
-  }
-  
-
-interface MainPageProps {
-    addToFavorites: (dog: Dog) => void
-}
+import { MainPageProps, Dog } from '../../../utils/interfaces';
 
 export default function MainPage({addToFavorites}: MainPageProps){
 

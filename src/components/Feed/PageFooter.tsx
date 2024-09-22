@@ -1,16 +1,7 @@
 import React, {useState, Dispatch, SetStateAction, useEffect } from "react"
-import { BASE_URL } from "../../urls"
+import { BASE_URL } from "../../../utils/urls"
+import { PageFooterProps} from '../../../utils/interfaces';
 
-interface PageFooterProps {
-    totalPages: number,
-    nextQuery: string,
-    setNextQuery: React.Dispatch<SetStateAction<string>>
-    getDogDetails: (ids: string[], nextQuery?: string, total?: number) => void,
-    selectedBreeds: string[],
-    currPage: number | string,
-    setCurrPage: React.Dispatch<SetStateAction<number | string>>
-
-}
 
 export default function PageFooter({totalPages, nextQuery, setNextQuery, getDogDetails, selectedBreeds, currPage, setCurrPage}: PageFooterProps){
     //make currPage a string only to clear page number if user focuses on input

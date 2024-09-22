@@ -7,7 +7,7 @@ import Dog3 from "../../images/dog3.jpg"
 import Dog2 from "../../images/dog2.jpg"
 import Dog1 from "../../images/dog1.jpg"
 import { useNavigate } from "react-router"
-import {BASE_URL} from "../../urls.ts"
+import {BASE_URL} from "../../../utils/urls.ts"
 
 export default function Login(){
 const [credentials, setCredentials] = useState({name: "", email: ""})

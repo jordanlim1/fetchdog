@@ -32,7 +32,7 @@ const [favoriteDogs, setFavoriteDogs] = useState<Dog[]>([])
         <Routes>
           {/* <Route path="/" element={<Login />} /> */}
           <Route path ='/' element = {<MainPage addToFavorites={addToFavorites}/>} /> 
-          <Route path='/favorites' element={<Favorites favoriteDogs={favoriteDogs/>}/>
+          <Route path='/favorites' element={<Favorites favoriteDogs={favoriteDogs} />}/>
         </Routes>
       </Router>
     )

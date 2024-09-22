@@ -2,21 +2,10 @@ import React, {useState, useEffect, SetStateAction} from "react"
 import SelectSearch, {SelectedOptionValue, SelectedOption} from 'react-select-search';
 import 'react-select-search/style.css'; 
 import paw from '../../images/paw.png';
-import { BASE_URL } from "../../urls";
+import { BASE_URL } from "../../../utils/urls";
+import { FilterProps } from '../../../utils/interfaces';
 
-interface FilterProps{
-    breeds: {
-        name:string,
-        value: string, 
-        key: string
-    }[]
-    selectedBreeds: string[],
-    getNewBreeds: () => void,
-    handleSelectionChange: (selectedValue: SelectedOptionValue | SelectedOptionValue[], selectedOption: SelectedOption | SelectedOption[]) => void,
-    getDogDetails: (ids: string[], nextQuery?: string | undefined, total?: number | undefined) => void,
-    setCurrPage: React.Dispatch<SetStateAction<number | string>>
 
-}
 
 export default function Filters({breeds, selectedBreeds, handleSelectionChange, getDogDetails, getNewBreeds, setCurrPage}: FilterProps){
 
