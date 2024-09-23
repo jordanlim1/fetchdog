@@ -13,6 +13,7 @@ This project is a dog adoption application built using **React** and bundled wit
 - Logout functionality
 - Quick Pagination with input
 - Sort results by breed in ascending or descending order
+- Navigate to homepage at any time by clicking logo
 
 ## Getting Started
 
