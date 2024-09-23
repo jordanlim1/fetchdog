@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useRef} from "react"
 import { BASE_URL } from "../../../utils/urls"
+import { RESULTS_PER_PAGE } from "../../../utils/constants"
 import Navbar from "./MainNavbar"
 import DogCard from "./DogCard"
 import PageFooter from "./PageFooter"
@@ -43,7 +44,7 @@ const breeds = dogBreeds.map((breed: string, idx: number) => {
 })
 
 async function getDogIds(){
-    const res = await fetch(`${BASE_URL}/dogs/search?size=12&sort=breed:asc`, {
+    const res = await fetch(`${BASE_URL}/dogs/search?size=${RESULTS_PER_PAGE}&sort=breed:asc`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -69,10 +70,10 @@ async function getDogDetails(ids: string[], nextQuery?: string, total?:number){
 
 
     const data: Dog[] = await res.json()
-   
+   console.log("details", data)
     if(nextQuery) setNextPageQuery(nextQuery)
      //for age filter
-    if(total) setTotalPages(Math.floor(total / 12) + 1)
+    if(total) setTotalPages(Math.floor(total / RESULTS_PER_PAGE) + 1)
     
     setDogs(data)
 }
@@ -81,58 +82,30 @@ async function getDogDetails(ids: string[], nextQuery?: string, total?:number){
 
 
 function handleSelectionChange(selectedValue: SelectedOptionValue | SelectedOptionValue[], selectedOption: SelectedOption | SelectedOption[]){
-    if(selectedValue.toString() !== selectedBreeds[0]) 
-    setSelectedBreeds([selectedValue.toString()]);
-    //If we want to select multiple breeds
-    // if (Array.isArray(selectedValue)) {
-    //     const stringValues = selectedValue.map(value => value.toString()); // Convert values to strings
-    //     setSelectedBreeds(stringValues);
-    //   }
+    // if(selectedValue.toString() !== selectedBreeds[0]) 
+    // setSelectedBreeds([selectedValue.toString()]);
+    // If we want to select multiple breeds
+    if (Array.isArray(selectedValue)) {
+        const stringValues = selectedValue.map(value => value.toString()); // Convert values to strings
+        setSelectedBreeds(stringValues);
+      }
+
+      
 }
 
 
 
 //Potential approach if user wants to select multiple breeds from drop down bc the api does not automatically combine breed query
 
-// async function getNewBreeds(){
-
-//     console.log(selectedBreeds)
-//     const allBreeds = selectedBreeds.map(async(breed) => {
-//     const res = await fetch(`${BASE_URL}/dogs/search?size=4&breeds=${[breed]}`, {
-//         method: 'GET',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         credentials: "include"
-//     })
-
-//     const data = await res.json()
-
-//     return data
-//     })
-
-
-//     const res = await Promise.all(allBreeds)
-//     console.log(res)
-
-//     let total = 0
-//     for(let i = 0; i < res.length; i++){
-//         total += res[i].total
-//     }
-
-//     setCurrBreedTotal(Math.floor(res[index].total/4) + 1)
-
-//     setTotalPages(Math.floor(total /4) + 1)
-
-//     if(res[index].next) {
-//     setNextPageQuery(res[index].next)
-//     }
-
-//     getDogDetails(res[index].resultIds)
-// }
-
 async function getNewBreeds(){
-    const res = await fetch(`${BASE_URL}/dogs/search?size=12&breeds=${selectedBreeds}&sort=name:asc`, {
+
+    console.log(selectedBreeds)
+    console.log('num', selectedBreeds[0], typeof selectedBreeds[0])
+    const selectedBreedsQuery = selectedBreeds.length > 1   ? [selectedBreeds[0], ...selectedBreeds].map(breed => `breeds=${encodeURIComponent(breed)}`).join('&') 
+    : selectedBreeds
+
+    // const allBreeds = selectedBreeds.map(async(breed) => {
+    const res = await fetch(`${BASE_URL}/dogs/search?size=${RESULTS_PER_PAGE}&breeds=${selectedBreedsQuery}&sort=breed:asc`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -141,10 +114,44 @@ async function getNewBreeds(){
     })
 
     const data = await res.json()
-    setTotalPages(Math.floor(data.total / 12) + 1)
+
+    // return data
+    // })
+
+
+    // const res = await Promise.all(allBreeds)
+    console.log(data)
+
+    // let total = 0
+    // for(let i = 0; i < res.length; i++){
+    //     total += res[i].total
+    // }
+
+    // setCurrBreedTotal(Math.floor(res[index].total/4) + 1)
+
+    setTotalPages(Math.floor(data.total /12) + 1)
+
+    // if(res[index].next) {
+    // setNextPageQuery(res[index].next)
+    // }
     setNextPageQuery(data.next)
     getDogDetails(data.resultIds)
 }
+
+// async function getNewBreeds(){
+//     const res = await fetch(`${BASE_URL}/dogs/search?size=12&breeds=${selectedBreeds}&sort=name:asc`, {
+//         method: 'GET',
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         credentials: "include"
+//     })
+
+//     const data = await res.json()
+//     setTotalPages(Math.floor(data.total / 12) + 1)
+//     setNextPageQuery(data.next)
+//     getDogDetails(data.resultIds)
+// }
 
 
     return (

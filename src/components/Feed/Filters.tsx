@@ -4,6 +4,7 @@ import 'react-select-search/style.css';
 import paw from '../../images/paw.png';
 import { BASE_URL } from "../../../utils/urls";
 import { FilterProps } from '../../../utils/interfaces';
+import { RESULTS_PER_PAGE } from "../../../utils/constants";
 
 
 
@@ -27,13 +28,13 @@ export default function Filters({breeds, selectedBreeds, handleSelectionChange, 
 
     async function handleFilters(){
 
-
+ 
     setCurrPage(1)
 
     //if no age requirements, just fetch the breed
     if(!minAge && !maxAge) return getNewBreeds()
     
-    let url = `${BASE_URL}/dogs/search?size=12&breeds=${selectedBreeds}&sort=name:asc`;
+    let url = `${BASE_URL}/dogs/search?size=${RESULTS_PER_PAGE}&breeds=${selectedBreeds}`;
 
     // Check for minAge and maxAge to adjust the query string
     if (minAge && maxAge) {
@@ -73,6 +74,7 @@ export default function Filters({breeds, selectedBreeds, handleSelectionChange, 
             placeholder="Breed"
             options={breeds}
             search
+            multiple
             value={selectedBreeds}
             onChange={handleSelectionChange}
         />
