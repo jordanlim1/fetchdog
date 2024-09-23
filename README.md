@@ -36,9 +36,11 @@ Before you can run this application, you need to have the following installed on
 ## Scripts
 
 ### Runs the development server, allowing you to view the application locally
+```bash
 npm run dev
 
 ### Executes the unit tests for the application
+```bash
 npm run tests
 
 ## Technologies used
