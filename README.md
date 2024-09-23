@@ -32,16 +32,16 @@ Before you can run this application, you need to have the following installed on
 - npm install
 
 
-### Scripts
+## Scripts
 
-## Runs the development server, allowing you to view the application locally
+### Runs the development server, allowing you to view the application locally
 - npm run dev
 
-## Executes the unit tests for the application
+### Executes the unit tests for the application
 - npm run tests
 
-### Technologies used
+## Technologies used
 
-# React: For building the user interface
-# Webpack: For bundling the modules and assets
-# CSS: For styling the application
+### React: For building the user interface
+### Webpack: For bundling the modules and assets
+### CSS: For styling the application
