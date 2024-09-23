@@ -355,10 +355,11 @@ html, body {
     z-index: 1000;
     max-height: 20vh;
     overflow-y: scroll;
-   /* background-color: black; */
    margin-left: 0vw !important;
     padding: 5px;
     box-sizing: border-box;
+    position: relative;
+    margin-top: 0vh !important;
     
     
 }
@@ -652,7 +653,7 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    z-index: 10;
+    position: relative;
     box-sizing: border-box;
   }
 
