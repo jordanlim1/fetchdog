@@ -712,3 +712,22 @@ html, body {
 .search-and-sort select:focus option:checked{
     border: 1px solid rgb(181, 62, 181);
 }
+
+/* Add this to your CSS file or inside a style tag */
+.popup {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .popup.show {
+    opacity: 1;
+  }
+  

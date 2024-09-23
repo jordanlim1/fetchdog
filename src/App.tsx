@@ -17,6 +17,9 @@ interface Dog {
 export default function App(){
 
 const [favoriteDogs, setFavoriteDogs] = useState<Dog[]>([])
+const [showPopup, setShowPopup] = useState(false);
+
+
 
     function addToFavorites(dog: Dog) {
         const isAlreadyFavorite = favoriteDogs.some(favoriteDog => favoriteDog.id === dog.id);
@@ -24,6 +27,12 @@ const [favoriteDogs, setFavoriteDogs] = useState<Dog[]>([])
         if (!isAlreadyFavorite) {
             setFavoriteDogs((prev) => [...prev, dog]);
         }    
+
+
+        setShowPopup(true);
+        setTimeout(() => {
+            setShowPopup(false);
+        }, 3000); 
     }
 
 
@@ -31,7 +40,7 @@ const [favoriteDogs, setFavoriteDogs] = useState<Dog[]>([])
         <Router>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path ='/main' element = {<MainPage addToFavorites={addToFavorites} />} /> 
+          <Route path ='/main' element = {<MainPage addToFavorites={addToFavorites} show={showPopup} />} /> 
           <Route path='/favorites' element={<FavoriteDogs favoriteDogs={favoriteDogs} />}/>
         </Routes>
       </Router>

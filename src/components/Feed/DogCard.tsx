@@ -6,15 +6,12 @@ import { DogCardProps, Dog } from '../../../utils/interfaces';
 
 export default function DogCard({age, breed, image, name, zip_code, dog, addToFavorites}: DogCardProps){
 
-
-
-    
    
     return (
         <div className="dog-cards" >
 
 
-{addToFavorites ?  <button className="favoriteButton" onClick={() => addToFavorites!(dog!)} >
+        {addToFavorites ?  <button className="favoriteButton" onClick={() => addToFavorites!(dog!)} >
         
        
         <svg

@@ -99,7 +99,7 @@ describe('Main Page Tests', () => {
   test('renders MainPage and fetches dog data', async () => {
     const { getByText } = render(
       <MemoryRouter>
-        <MainPage addToFavorites={mockAddToFavorites} />
+        <MainPage addToFavorites={mockAddToFavorites} show={false} />
       </MemoryRouter>
     );
   
@@ -117,7 +117,7 @@ describe('Main Page Tests', () => {
   test('fetches new dog data when navigating to next page', async () => {
     const { getByText, getByRole } = render(
       <MemoryRouter>
-        <MainPage addToFavorites={jest.fn()} />
+        <MainPage addToFavorites={jest.fn()} show={false} />
       </MemoryRouter>
     );
 
@@ -145,7 +145,7 @@ describe('Main Page Tests', () => {
   test('calls addToFavorites when favorite button is clicked', async () => {
     const { getByText } = render(
       <MemoryRouter>
-        <MainPage addToFavorites={mockAddToFavorites} />
+        <MainPage addToFavorites={mockAddToFavorites} show={false} />
       </MemoryRouter>
     );
   

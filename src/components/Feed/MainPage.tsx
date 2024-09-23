@@ -9,8 +9,9 @@ import SelectSearch, {SelectedOptionValue, SelectedOption} from 'react-select-se
 import 'react-select-search/style.css'; 
 import { MainPageProps, Dog } from '../../../utils/interfaces';
 import ActiveFilters from "./ActiveFilters"
+import Popup from "./Popup"
 
-export default function MainPage({addToFavorites}: MainPageProps){
+export default function MainPage({addToFavorites, show}: MainPageProps){
 
     
 
@@ -162,7 +163,7 @@ function handleSelectionChange(selectedValue: SelectedOptionValue | SelectedOpti
                     
                 </main>
     
-               
+               <Popup show={show}/>
             </div>
         );
 }

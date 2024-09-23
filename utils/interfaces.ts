@@ -43,11 +43,15 @@ export interface FilterProps{
 
 export interface MainNavBarProps {
     getDogIds: () => void,
+}
 
+export interface PopupProps{
+    show: boolean
 }
 
 export interface MainPageProps {
     addToFavorites: (dog: Dog) => void,
+    show: boolean
 }
 
 export interface PageFooterProps {
