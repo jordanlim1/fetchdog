@@ -96,7 +96,7 @@ async function getDogDetails(ids: string[], nextQuery?: string, total?:number){
 
     if(nextQuery) setNextPageQuery(nextQuery)
      //for age filter
-    if(total) setTotalPages(Math.floor(total / RESULTS_PER_PAGE))
+    if(total) setTotalPages(Math.ceil(total / RESULTS_PER_PAGE))
     
     setDogs(data)
     

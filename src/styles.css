@@ -641,6 +641,11 @@ html, body {
     font-weight: normal !important;
   }
 
+  #logout:hover{
+    cursor: pointer;
+    background-color: rgb(244, 179, 59);
+  }
+
   .filter-tag{
     border:1px solid rgb(181, 62, 181);
     padding: 10px;

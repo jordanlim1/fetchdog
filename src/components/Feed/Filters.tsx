@@ -23,8 +23,20 @@ export default function Filters({breeds, selectedBreeds, handleSelectionChange, 
         alert("Please enter a valid age")
         return -1
       }
-      if(name === "minAge") setMinAge(value)
-      else if (name === "maxAge") setMaxAge(value)
+      if(name === "minAge") {
+        if(value > maxAge && value !== '' && maxAge){
+            alert("Min age cannot be larger than max age")
+            return -1
+        }
+        setMinAge(value)
+      }
+      else if (name === "maxAge" ) {
+      if(value < minAge && minAge !== '' && value !== "") {
+        alert("Max age cannot be lower than min age")
+        return -1
+      }
+      setMaxAge(value)
+      }
     }
 
 
