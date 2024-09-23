@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react"
-import Navbar from "./LoginNavbar"
+import LoginNavbar from "./LoginNavbar"
 import Footer from "./Footer"
 import Dog4 from "../../images/dog4.png"
 import Dog3 from "../../images/dog3.jpg"
@@ -47,7 +47,7 @@ try{
 
     return (
     <div> 
-        <Navbar />
+        <LoginNavbar />
 
         <div className="login-page">
         <div className="image-container">

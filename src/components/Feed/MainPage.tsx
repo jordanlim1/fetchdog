@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from "react"
 import { BASE_URL } from "../../../utils/urls"
 import { RESULTS_PER_PAGE } from "../../../utils/constants"
-import Navbar from "./MainNavbar"
+import MainNavbar from "./MainNavbar"
 import DogCard from "./DogCard"
 import PageFooter from "./PageFooter"
 import Filters from "./Filters"
@@ -120,7 +120,7 @@ function handleSelectionChange(selectedValue: SelectedOptionValue | SelectedOpti
 
     return (
             <div className="home-page">
-                <Navbar getDogIds={getDogIds} />
+                <MainNavbar getDogIds={getDogIds} />
                     <main>
                     <section className="filter">
                         <Filters breeds={breeds} selectedBreeds={selectedBreeds}  
