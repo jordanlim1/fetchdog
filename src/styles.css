@@ -5,6 +5,7 @@ html, body {
     flex-direction: column;
     height: 100%;
     overflow: hidden; /* Prevent unnecessary scrolling */
+    scroll-behavior: smooth;
 }
 
 
@@ -263,7 +264,7 @@ html, body {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* 3 cards per row */
   row-gap: 30px; /* Spacing between cards */
-  height: calc(100vh - 18vh); /* Adjust height for header or other elements */
+  flex: 1;
   justify-items: center;
   overflow-y: auto;
   box-sizing: border-box;
@@ -324,7 +325,7 @@ html, body {
   .home-page{
     height: 100vh;
     max-width: 100vw;
-    
+    overflow-y: auto;
   }
 
   
@@ -372,14 +373,23 @@ html, body {
     
   }
 
-  .select-search-select{
-    /* display: none; */
+  .select-search-select {
+    visibility: hidden; /* Hide the element but keep it in the DOM */
     max-height: 20vh;
     background-color: white;
     overflow-y: auto;
+    position: relative;
+    z-index: 2;
+    opacity: 0; /* Make it invisible */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth transition */
+}
+
+
+.select-search-has-focus .select-search-select{
+    visibility: visible;
+    opacity: 1;
     
-    
-  }
+}
 
  
   
@@ -390,6 +400,7 @@ html, body {
     height: 10vh;
     box-sizing: border-box;
     padding-left: 1.4vw;
+    max-width: 100vw;
   }
   
   .pagination {
@@ -441,9 +452,13 @@ html, body {
 
 .filterByBreed{
     display: flex;
-    align-items: center;
-    margin-left: 2vw;
+    align-items: flex-start;
+    margin-left: 1.7vw;
+    height: 5vh
+
+
 }
+
 
 .paw{
     width: 3vw;
@@ -624,3 +639,76 @@ html, body {
     font-family:'Courier New', Courier, monospace!important;
     font-weight: normal !important;
   }
+
+  .filter-tag{
+    border:1px solid rgb(181, 62, 181);
+    padding: 10px;
+    background-color: white;
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(181, 62, 181);
+    font-weight: bold;
+    border-radius: 20px;
+    margin-left: 1vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 10;
+    box-sizing: border-box;
+  }
+
+  .filter-tag:hover {
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+  .filter-tag button{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    margin-left: 5px;
+  }
+
+
+  .active-filter-tags{
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+    height: 7vh;
+    overflow-x: auto;
+    white-space: nowrap;
+    box-sizing: border-box;
+    margin-bottom: 0;
+    overflow-y: hidden;
+  }
+
+  .filters-applied {
+    margin-left: 3vw;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: rgb(160, 151, 151);
+  }
+
+  .search-and-sort{
+    display:flex;
+    align-items: center;
+    width: 30%;
+    justify-content: space-between;
+  }
+
+  .search-and-sort select{
+    border: 1px solid orange;
+    height: 5vh;
+    padding: 12px;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+    
+  }
+
+  .search-and-sort select:focus{
+    border: 1px solid rgb(181, 62, 181);
+  }
+
+.search-and-sort select:focus option:checked{
+    border: 1px solid rgb(181, 62, 181);
+}

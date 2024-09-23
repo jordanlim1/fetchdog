@@ -20,7 +20,7 @@ export default function DogCard({age, breed, image, name, zip_code, dog, addToFa
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
-          width="auto"  
+          
           height="5vh"
           className={'notFavorited'}
         >

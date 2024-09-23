@@ -11,7 +11,7 @@ export interface Dog {
     age: number;
     zip_code: string;
     breed: string;
-    
+
   }
   
 
@@ -32,10 +32,12 @@ export interface FilterProps{
         key: string
     }[]
     selectedBreeds: string[],
-    getNewBreeds: () => void,
     handleSelectionChange: (selectedValue: SelectedOptionValue | SelectedOptionValue[], selectedOption: SelectedOption | SelectedOption[]) => void,
     getDogDetails: (ids: string[], nextQuery?: string | undefined, total?: number | undefined) => void,
-    setCurrPage: React.Dispatch<SetStateAction<number | string>>
+    setCurrPage: React.Dispatch<SetStateAction<number | string>>,
+    setBreedFilterTags: React.Dispatch<SetStateAction<string[]>>,
+    getDogIds: () => void,
+    setActiveFilterTags: React.Dispatch<SetStateAction<boolean>>,
 
 }
 
@@ -43,6 +45,7 @@ export interface MainNavBarProps {
     getDogIds: () => void,
     setTotalPages: React.Dispatch<SetStateAction<number>>,
     setSelectedBreeds: React.Dispatch<SetStateAction<string[]>>,
+    setCurrPage: React.Dispatch<SetStateAction<number | string>>
 
 }
 

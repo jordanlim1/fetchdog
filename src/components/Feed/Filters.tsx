@@ -8,12 +8,15 @@ import { RESULTS_PER_PAGE } from "../../../utils/constants";
 
 
 
-export default function Filters({breeds, selectedBreeds, handleSelectionChange, getDogDetails, getNewBreeds, setCurrPage}: FilterProps){
+export default function Filters({breeds, selectedBreeds, handleSelectionChange, getDogDetails, setCurrPage, setBreedFilterTags, getDogIds, setActiveFilterTags}: FilterProps){
 
 
     const [minAge, setMinAge] = useState("")
     const [maxAge, setMaxAge] = useState("")
+    const [sortDirection, setSortDirection] = useState("")
 
+
+    
 
     function setAges(e: React.ChangeEvent<HTMLInputElement>){
       const {name, value} = e.target
@@ -28,14 +31,25 @@ export default function Filters({breeds, selectedBreeds, handleSelectionChange, 
 
     async function handleFilters(){
 
- 
+    if(selectedBreeds.length === 0) {
+        return getDogIds()
+    }
+    
+    console.log('selected', selectedBreeds)
+    setBreedFilterTags(selectedBreeds)
+    setActiveFilterTags(true)
+
     setCurrPage(1)
 
-    //if no age requirements, just fetch the breed
-    if(!minAge && !maxAge) return getNewBreeds()
     
-    let url = `${BASE_URL}/dogs/search?size=${RESULTS_PER_PAGE}&breeds=${selectedBreeds}`;
+        const selectedBreedsQuery = selectedBreeds.length > 1   ? [selectedBreeds[0], ...selectedBreeds].map(breed => `breeds=${encodeURIComponent(breed)}`).join('&') 
+        : selectedBreeds
 
+    let url = `${BASE_URL}/dogs/search?size=${RESULTS_PER_PAGE}&breeds=${selectedBreedsQuery}&sort=breed:asc`;
+
+    if(sortDirection == "Descending") {
+        url = `${BASE_URL}/dogs/search?size=${RESULTS_PER_PAGE}&breeds=${selectedBreedsQuery}&sort=breed:desc`
+    }
     // Check for minAge and maxAge to adjust the query string
     if (minAge && maxAge) {
       url += `&ageMin=${minAge}&ageMax=${maxAge}`;
@@ -65,6 +79,18 @@ export default function Filters({breeds, selectedBreeds, handleSelectionChange, 
 
     }
 
+    function handleSortDirection(e: any){
+     
+        setSortDirection(e.target.value)
+       
+        setTimeout(() => {
+            const targetButton = document.getElementById('filterButton');
+            if (targetButton) {
+                targetButton.click(); // Trigger the button click
+            }
+        }, 0);
+    }
+
     return(
       <>
         <div className="filterByBreed">
@@ -77,7 +103,8 @@ export default function Filters({breeds, selectedBreeds, handleSelectionChange, 
             multiple
             value={selectedBreeds}
             onChange={handleSelectionChange}
-        />
+
+        />  
     </div>
 
     <div className="filterByAge">
@@ -89,8 +116,23 @@ export default function Filters({breeds, selectedBreeds, handleSelectionChange, 
         <label htmlFor="maxAge">
         <input placeholder="Max Age" name="maxAge" type="number" value={maxAge} onChange={setAges}/>
         </label>
-        <button className="filterSearch" onClick={handleFilters} >Search</button>
+        
     </div>
+    <div className="search-and-sort">
+    <button className="filterSearch" id="filterButton" onClick={handleFilters} >Search</button>
+        <label htmlFor="resultsOrders">
+            <select onChange={handleSortDirection}>
+                <option value="Ascending">
+                    Ascending
+                </option>
+                <option value="Descending">
+                    Descending 
+                </option>
+            </select>
+
+
+        </label>
+        </div>
     </>
     )
 }

@@ -8,8 +8,11 @@ import Filters from "./Filters"
 import SelectSearch, {SelectedOptionValue, SelectedOption} from 'react-select-search';
 import 'react-select-search/style.css'; 
 import { MainPageProps, Dog } from '../../../utils/interfaces';
+import ActiveFilters from "./ActiveFilters"
 
 export default function MainPage({addToFavorites}: MainPageProps){
+
+    
 
 const [dogBreeds, setDogBreeds] = useState<string[]>([])
 const [dogs, setDogs] = useState<Dog[]>([])
@@ -18,12 +21,24 @@ const [totalPages, setTotalPages] = useState(1)
 const [currPage, setCurrPage] = useState <number | string>(1)
 const [nextPageQuery, setNextPageQuery] = useState("")
 const [showPopup, setShowPopup] = useState(false);
-
+const [activeFilterTags, setActiveFilterTags] = useState(false)
+const [breedFilterTags, setBreedFilterTags] = useState<string[]>([])
 
 useEffect(() => {
     getDogBreeds()
     getDogIds()
 }, [])
+
+useEffect(() => {
+    const handleScroll = () => {
+        window.scrollTo(0, 0);
+    };
+
+    handleScroll(); // Scroll to top when component mounts
+
+   
+}, [currPage]);
+
 
 async function getDogBreeds(){
     const res = await fetch(`${BASE_URL}/dogs/breeds`, {
@@ -52,6 +67,7 @@ async function getDogIds(){
         credentials: "include"
     })
 
+    setTotalPages(1)
     const data = await res.json()
     getDogDetails(data.resultIds)
 }
@@ -70,7 +86,7 @@ async function getDogDetails(ids: string[], nextQuery?: string, total?:number){
 
 
     const data: Dog[] = await res.json()
-   console.log("details", data)
+
     if(nextQuery) setNextPageQuery(nextQuery)
      //for age filter
     if(total) setTotalPages(Math.floor(total / RESULTS_PER_PAGE) + 1)
@@ -82,86 +98,27 @@ async function getDogDetails(ids: string[], nextQuery?: string, total?:number){
 
 
 function handleSelectionChange(selectedValue: SelectedOptionValue | SelectedOptionValue[], selectedOption: SelectedOption | SelectedOption[]){
-    // if(selectedValue.toString() !== selectedBreeds[0]) 
-    // setSelectedBreeds([selectedValue.toString()]);
-    // If we want to select multiple breeds
+
+
     if (Array.isArray(selectedValue)) {
         const stringValues = selectedValue.map(value => value.toString()); // Convert values to strings
         setSelectedBreeds(stringValues);
       }
 
-      
 }
 
 
-
-//Potential approach if user wants to select multiple breeds from drop down bc the api does not automatically combine breed query
-
-async function getNewBreeds(){
-
-    console.log(selectedBreeds)
-    console.log('num', selectedBreeds[0], typeof selectedBreeds[0])
-    const selectedBreedsQuery = selectedBreeds.length > 1   ? [selectedBreeds[0], ...selectedBreeds].map(breed => `breeds=${encodeURIComponent(breed)}`).join('&') 
-    : selectedBreeds
-
-    // const allBreeds = selectedBreeds.map(async(breed) => {
-    const res = await fetch(`${BASE_URL}/dogs/search?size=${RESULTS_PER_PAGE}&breeds=${selectedBreedsQuery}&sort=breed:asc`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        credentials: "include"
-    })
-
-    const data = await res.json()
-
-    // return data
-    // })
-
-
-    // const res = await Promise.all(allBreeds)
-    console.log(data)
-
-    // let total = 0
-    // for(let i = 0; i < res.length; i++){
-    //     total += res[i].total
-    // }
-
-    // setCurrBreedTotal(Math.floor(res[index].total/4) + 1)
-
-    setTotalPages(Math.floor(data.total /12) + 1)
-
-    // if(res[index].next) {
-    // setNextPageQuery(res[index].next)
-    // }
-    setNextPageQuery(data.next)
-    getDogDetails(data.resultIds)
-}
-
-// async function getNewBreeds(){
-//     const res = await fetch(`${BASE_URL}/dogs/search?size=12&breeds=${selectedBreeds}&sort=name:asc`, {
-//         method: 'GET',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         credentials: "include"
-//     })
-
-//     const data = await res.json()
-//     setTotalPages(Math.floor(data.total / 12) + 1)
-//     setNextPageQuery(data.next)
-//     getDogDetails(data.resultIds)
-// }
 
 
     return (
             <div className="home-page">
-                <Navbar getDogIds={getDogIds} setTotalPages ={setTotalPages} setSelectedBreeds ={setSelectedBreeds} />
+                <Navbar getDogIds={getDogIds} setTotalPages ={setTotalPages} setSelectedBreeds ={setSelectedBreeds} setCurrPage={setCurrPage} />
                     <main>
                     <section className="filter">
-                        <Filters breeds={breeds} selectedBreeds={selectedBreeds} getNewBreeds ={getNewBreeds} handleSelectionChange={handleSelectionChange} getDogDetails={getDogDetails} setCurrPage={setCurrPage}/>
+                        <Filters breeds={breeds} selectedBreeds={selectedBreeds}  handleSelectionChange={handleSelectionChange} getDogDetails={getDogDetails} setCurrPage={setCurrPage} setBreedFilterTags={setBreedFilterTags} getDogIds ={getDogIds} setActiveFilterTags={setActiveFilterTags}/>
                     </section>
     
+            {activeFilterTags ? <ActiveFilters setActiveFilterTags={setActiveFilterTags} selectedBreeds={selectedBreeds} setSelectedBreeds={setSelectedBreeds} breedFilterTags={breedFilterTags} setBreedFilterTags={setBreedFilterTags}/> : "" }
                     <section className="card-holder">
                         {dogs.map((dog: Dog, idx: number) => {
                             const { age, breed, img, name, zip_code } = dog;
