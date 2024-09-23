@@ -8,17 +8,18 @@ import { RESULTS_PER_PAGE } from "../../../utils/constants";
 
 
 
-export default function Filters({breeds, selectedBreeds, handleSelectionChange, getDogDetails, setCurrPage, setBreedFilterTags, getDogIds, setActiveFilterTags, minAge, setMinAge, maxAge, setMaxAge}: FilterProps){
+export default function Filters({breeds, selectedBreeds, handleSelectionChange, getDogDetails, setCurrPage, setBreedFilterTags, getDogIds, setActiveFilterTags}: FilterProps){
 
 
-   
+    const [minAge, setMinAge] = useState("")
+    const [maxAge, setMaxAge] = useState("")
     const [sortDirection, setSortDirection] = useState("")
 
 
 
     function setAges(e: React.ChangeEvent<HTMLInputElement>){
       const {name, value} = e.target
-      if(Number(value) < 0) {
+      if(Number(value) < 0 || Number(value) > 99) {
         alert("Please enter a valid age")
         return -1
       }
@@ -32,9 +33,9 @@ export default function Filters({breeds, selectedBreeds, handleSelectionChange, 
     if(selectedBreeds.length === 0) {
         return getDogIds()
     }
-    
-    console.log('selected', selectedBreeds)
-    setBreedFilterTags(selectedBreeds)
+    if(minAge && maxAge)setBreedFilterTags([...selectedBreeds, minAge, maxAge])
+   else if(minAge || maxAge) setBreedFilterTags([...selectedBreeds, minAge || maxAge])
+    else setBreedFilterTags(selectedBreeds)
     setActiveFilterTags(true)
 
     setCurrPage(1)

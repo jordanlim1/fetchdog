@@ -23,8 +23,6 @@ const [nextPageQuery, setNextPageQuery] = useState("")
 const [showPopup, setShowPopup] = useState(false);
 const [activeFilterTags, setActiveFilterTags] = useState(false)
 const [breedFilterTags, setBreedFilterTags] = useState<string[]>([])
-const [minAge, setMinAge] = useState("")
-const [maxAge, setMaxAge] = useState("")
 
 useEffect(() => {
     getDogBreeds()
@@ -69,7 +67,14 @@ async function getDogIds(){
         credentials: "include"
     })
 
+    //intial page load reset everything
+
     setTotalPages(1)
+    setCurrPage(1)
+    setCurrPage(Number(1))
+    setSelectedBreeds([])
+    setBreedFilterTags([])
+    setActiveFilterTags(false)
     const data = await res.json()
     getDogDetails(data.resultIds)
 }
@@ -77,6 +82,7 @@ async function getDogIds(){
 
 //nextQuery has to be propped drilled down because of the initial fetch in parent component which will give us the first next url
 async function getDogDetails(ids: string[], nextQuery?: string, total?:number){
+    
     const res = await fetch(`${BASE_URL}/dogs`, {
         method: 'POST',
         headers: {
@@ -91,7 +97,7 @@ async function getDogDetails(ids: string[], nextQuery?: string, total?:number){
 
     if(nextQuery) setNextPageQuery(nextQuery)
      //for age filter
-    if(total) setTotalPages(Math.floor(total / RESULTS_PER_PAGE) + 1)
+    if(total) setTotalPages(Math.floor(total / RESULTS_PER_PAGE))
     
     setDogs(data)
 }
@@ -114,18 +120,17 @@ function handleSelectionChange(selectedValue: SelectedOptionValue | SelectedOpti
 
     return (
             <div className="home-page">
-                <Navbar getDogIds={getDogIds} setTotalPages ={setTotalPages} setSelectedBreeds ={setSelectedBreeds} setCurrPage={setCurrPage} />
+                <Navbar getDogIds={getDogIds} />
                     <main>
                     <section className="filter">
                         <Filters breeds={breeds} selectedBreeds={selectedBreeds}  
                         handleSelectionChange={handleSelectionChange} getDogDetails={getDogDetails} setCurrPage={setCurrPage} 
-                        setBreedFilterTags={setBreedFilterTags} getDogIds ={getDogIds} setActiveFilterTags={setActiveFilterTags} 
-                        minAge={minAge} setMinAge={setMinAge}
-                        maxAge={maxAge} setMaxAge={setMaxAge}
+                        setBreedFilterTags={setBreedFilterTags} 
+                        getDogIds ={getDogIds} setActiveFilterTags={setActiveFilterTags} 
                         />
                     </section>
     
-            {activeFilterTags ? <ActiveFilters setActiveFilterTags={setActiveFilterTags} selectedBreeds={selectedBreeds} setSelectedBreeds={setSelectedBreeds} breedFilterTags={breedFilterTags} setBreedFilterTags={setBreedFilterTags} minAge={minAge} maxAge={maxAge}/> : "" }
+            {activeFilterTags ? <ActiveFilters setActiveFilterTags={setActiveFilterTags} selectedBreeds={selectedBreeds} setSelectedBreeds={setSelectedBreeds} breedFilterTags={breedFilterTags} setBreedFilterTags={setBreedFilterTags} /> : "" }
                     <section className="card-holder">
                         {dogs.map((dog: Dog, idx: number) => {
                             const { age, breed, img, name, zip_code } = dog;

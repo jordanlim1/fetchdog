@@ -37,20 +37,12 @@ export interface FilterProps{
     setCurrPage: React.Dispatch<SetStateAction<number | string>>,
     setBreedFilterTags: React.Dispatch<SetStateAction<string[]>>,
     getDogIds: () => void,
-    setActiveFilterTags: React.Dispatch<SetStateAction<boolean>>,
-    minAge: string,
-    setMinAge: React.Dispatch<SetStateAction<string>>,
-    maxAge: string,
-    setMaxAge: React.Dispatch<SetStateAction<string>>
-
+    setActiveFilterTags: React.Dispatch<SetStateAction<boolean>>
 
 }
 
 export interface MainNavBarProps {
     getDogIds: () => void,
-    setTotalPages: React.Dispatch<SetStateAction<number>>,
-    setSelectedBreeds: React.Dispatch<SetStateAction<string[]>>,
-    setCurrPage: React.Dispatch<SetStateAction<number | string>>
 
 }
 
@@ -88,6 +80,4 @@ export interface ActiveFiltersProps{
     setSelectedBreeds: React.Dispatch<SetStateAction<string[]>>,
     breedFilterTags: string[],
     setBreedFilterTags: React.Dispatch<SetStateAction<string[]>>,
-    minAge: string,
-    maxAge: string
 }
