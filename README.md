@@ -30,7 +30,9 @@ Before you can run this application, you need to have the following installed on
 - cd dog-adoption-app
 
 3. Install the required dependencies 
-- npm install
+```bash
+ npm install
+ ```
 
 
 ## Scripts
@@ -41,7 +43,9 @@ npm run dev
 ```
 
 ### Executes the unit tests for the application
+```bash
 npm run tests
+```
 
 ## Technologies used
 
