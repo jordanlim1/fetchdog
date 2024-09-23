@@ -717,7 +717,7 @@ html, body {
 /* Add this to your CSS file or inside a style tag */
 .popup {
     position: fixed;
-    bottom: 20px;
+    bottom: 5vh;
     left: 50%;
     transform: translateX(-50%);
     background-color: #4caf50;
