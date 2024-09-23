@@ -38,7 +38,7 @@ async function getDogBreeds(){
 }
 
 const breeds = dogBreeds.map((breed: string, idx: number) => {
-    return {name: breed, value: breed, key: `${breed}-${idx}` // Adding unique key for each option
+    return {name: breed, value: breed, key: `${breed}-${idx}` 
 }
 })
 
@@ -69,15 +69,12 @@ async function getDogDetails(ids: string[], nextQuery?: string, total?:number){
 
 
     const data: Dog[] = await res.json()
-    const updatedDogs = data.map((dog) => ({
-        ...dog, // Spread the existing dog properties
-        favorite: false // Add a favorite key with a default value of false
-    }));
+   
     if(nextQuery) setNextPageQuery(nextQuery)
      //for age filter
     if(total) setTotalPages(Math.floor(total / 12) + 1)
     
-    setDogs(updatedDogs)
+    setDogs(data)
 }
 
 

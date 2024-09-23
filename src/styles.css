@@ -64,7 +64,7 @@ html, body {
 }
 
 
-.left{
+.image-container{
     width: 40%;
     height: 50%;
     margin-bottom: 15%;
@@ -72,7 +72,7 @@ html, body {
 
 }
 
-.left img {
+.image-container img {
     width: 19vw; /* Relative to viewport width */
     height: 19vw; /* Keep it circular by maintaining equal width and height */
     border-radius: 50%;
@@ -83,25 +83,25 @@ html, body {
   }
   
   /* Adjust the positioning of each image to create overlap */
-  .left img:nth-child(1) {
+  .image-container img:nth-child(1) {
     top: -2vw;
     left: 0;
     animation-delay: 0s;
   }
   
-  .left img:nth-child(2) {
+  .image-container img:nth-child(2) {
     top: 2vw;
     left: 15vw;
     animation-delay: 0.6s;
   }
   
-  .left img:nth-child(3) {
+  .image-container img:nth-child(3) {
     top: 15vw;
     left: 0;
     animation-delay: 1.2s;
   }
   
-  .left img:nth-child(4) {
+  .image-container img:nth-child(4) {
     top: 18vw;
     left: 15vw;
     animation-delay: 1.8s;
@@ -340,8 +340,10 @@ html, body {
     list-style-type: none; /* Remove bullet points */
     background-color: white;
     color:black;
-
+  
   }
+ 
+
 
   .select-search-row button:hover{
     background-color: lightgray !important;
@@ -349,13 +351,17 @@ html, body {
 
   .select-search-options {
     background-color: white;
-    border: 1px solid #ddd;
     z-index: 1000;
     max-height: 20vh;
-    align-items: center;
     overflow-y: scroll;
+   /* background-color: black; */
+   margin-left: 0vw !important;
+    padding: 5px;
+    box-sizing: border-box;
+    
     
 }
+
 
 
   .select-search-input{
@@ -371,7 +377,11 @@ html, body {
     max-height: 20vh;
     background-color: white;
     overflow-y: auto;
+    
+    
   }
+
+ 
   
   .filter{
     display: flex;

@@ -11,7 +11,6 @@ interface Dog {
     age: number;
     zip_code: string;
     breed: string;
-    favorite: boolean;
   }
   
 

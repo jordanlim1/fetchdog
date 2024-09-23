@@ -50,7 +50,7 @@ try{
         <Navbar />
 
         <div className="login-page">
-        <div className="left">
+        <div className="image-container">
             <img src={Dog1} />
             <img src={Dog2}/>
             <img src={Dog3} />
