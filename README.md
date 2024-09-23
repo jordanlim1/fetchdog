@@ -47,9 +47,17 @@ npm run dev
 npm run tests
 ```
 
+## Website url
+
+```bash 
+https://main.d2qko6mw9zvhjn.amplifyapp.com/
+```
+
 ## Technologies used
 
 ### React: For building the user interface
 ### Webpack: For bundling the modules and assets
 ### CSS: For styling the application
 ### AWS: For deployment
+
+
