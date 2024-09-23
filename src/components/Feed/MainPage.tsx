@@ -29,15 +29,13 @@ useEffect(() => {
     getDogIds()
 }, [])
 
-useEffect(() => {
-    const handleScroll = () => {
-        window.scrollTo(0, 0);
-    };
+// function backToTop(){
+//     document.getElementById("home-navbar")?.scrollIntoView({   behavior: 'smooth' })
+// }
 
-    handleScroll(); // Scroll to top when component mounts
-
-   
-}, [currPage]);
+// useEffect(() =>{
+//     backtotop()
+// }, [dogs])
 
 
 async function getDogBreeds(){
@@ -100,6 +98,8 @@ async function getDogDetails(ids: string[], nextQuery?: string, total?:number){
     if(total) setTotalPages(Math.floor(total / RESULTS_PER_PAGE))
     
     setDogs(data)
+    
+
 }
 
 

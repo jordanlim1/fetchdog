@@ -27,6 +27,7 @@ export default function PageFooter({totalPages, nextQuery, setNextQuery, getDogD
         getDogDetails(data.resultIds)
     }
     
+   
     async function handleNextPage(){
         if(Number(currPage)  >= totalPages) return -1
         
