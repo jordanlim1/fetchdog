@@ -38,6 +38,11 @@ export interface FilterProps{
     setBreedFilterTags: React.Dispatch<SetStateAction<string[]>>,
     getDogIds: () => void,
     setActiveFilterTags: React.Dispatch<SetStateAction<boolean>>,
+    minAge: string,
+    setMinAge: React.Dispatch<SetStateAction<string>>,
+    maxAge: string,
+    setMaxAge: React.Dispatch<SetStateAction<string>>
+
 
 }
 
@@ -76,3 +81,13 @@ export interface ModalProps {
 
 
 
+
+export interface ActiveFiltersProps{
+    setActiveFilterTags: React.Dispatch<SetStateAction<boolean>>,
+    selectedBreeds: string[],
+    setSelectedBreeds: React.Dispatch<SetStateAction<string[]>>,
+    breedFilterTags: string[],
+    setBreedFilterTags: React.Dispatch<SetStateAction<string[]>>,
+    minAge: string,
+    maxAge: string
+}

@@ -8,15 +8,13 @@ import { RESULTS_PER_PAGE } from "../../../utils/constants";
 
 
 
-export default function Filters({breeds, selectedBreeds, handleSelectionChange, getDogDetails, setCurrPage, setBreedFilterTags, getDogIds, setActiveFilterTags}: FilterProps){
+export default function Filters({breeds, selectedBreeds, handleSelectionChange, getDogDetails, setCurrPage, setBreedFilterTags, getDogIds, setActiveFilterTags, minAge, setMinAge, maxAge, setMaxAge}: FilterProps){
 
 
-    const [minAge, setMinAge] = useState("")
-    const [maxAge, setMaxAge] = useState("")
+   
     const [sortDirection, setSortDirection] = useState("")
 
 
-    
 
     function setAges(e: React.ChangeEvent<HTMLInputElement>){
       const {name, value} = e.target

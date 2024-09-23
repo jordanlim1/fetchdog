@@ -23,6 +23,8 @@ const [nextPageQuery, setNextPageQuery] = useState("")
 const [showPopup, setShowPopup] = useState(false);
 const [activeFilterTags, setActiveFilterTags] = useState(false)
 const [breedFilterTags, setBreedFilterTags] = useState<string[]>([])
+const [minAge, setMinAge] = useState("")
+const [maxAge, setMaxAge] = useState("")
 
 useEffect(() => {
     getDogBreeds()
@@ -115,10 +117,15 @@ function handleSelectionChange(selectedValue: SelectedOptionValue | SelectedOpti
                 <Navbar getDogIds={getDogIds} setTotalPages ={setTotalPages} setSelectedBreeds ={setSelectedBreeds} setCurrPage={setCurrPage} />
                     <main>
                     <section className="filter">
-                        <Filters breeds={breeds} selectedBreeds={selectedBreeds}  handleSelectionChange={handleSelectionChange} getDogDetails={getDogDetails} setCurrPage={setCurrPage} setBreedFilterTags={setBreedFilterTags} getDogIds ={getDogIds} setActiveFilterTags={setActiveFilterTags}/>
+                        <Filters breeds={breeds} selectedBreeds={selectedBreeds}  
+                        handleSelectionChange={handleSelectionChange} getDogDetails={getDogDetails} setCurrPage={setCurrPage} 
+                        setBreedFilterTags={setBreedFilterTags} getDogIds ={getDogIds} setActiveFilterTags={setActiveFilterTags} 
+                        minAge={minAge} setMinAge={setMinAge}
+                        maxAge={maxAge} setMaxAge={setMaxAge}
+                        />
                     </section>
     
-            {activeFilterTags ? <ActiveFilters setActiveFilterTags={setActiveFilterTags} selectedBreeds={selectedBreeds} setSelectedBreeds={setSelectedBreeds} breedFilterTags={breedFilterTags} setBreedFilterTags={setBreedFilterTags}/> : "" }
+            {activeFilterTags ? <ActiveFilters setActiveFilterTags={setActiveFilterTags} selectedBreeds={selectedBreeds} setSelectedBreeds={setSelectedBreeds} breedFilterTags={breedFilterTags} setBreedFilterTags={setBreedFilterTags} minAge={minAge} maxAge={maxAge}/> : "" }
                     <section className="card-holder">
                         {dogs.map((dog: Dog, idx: number) => {
                             const { age, breed, img, name, zip_code } = dog;
