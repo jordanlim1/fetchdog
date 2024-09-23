@@ -46,3 +46,4 @@ Before you can run this application, you need to have the following installed on
 ### React: For building the user interface
 ### Webpack: For bundling the modules and assets
 ### CSS: For styling the application
+### AWS: For deployment
