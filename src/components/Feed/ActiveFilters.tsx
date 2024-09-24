@@ -41,7 +41,7 @@ function handleDeleteTag(event?: React.MouseEvent<HTMLButtonElement>){
         <div className="active-filter-tags">
             <p className="filters-applied">Filters Applied: </p>
 
-            {breedFilterTags.sort((a,b) => a.localeCompare(b)).map((breedTag, idx) => {
+            {breedFilterTags.map((breedTag, idx) => {
                 return <p key={`${breedTag}+${idx}`}  className="filter-tag">
                 {breedTag} 
                 {breedTag.length > 2 ? <button onClick={handleDeleteTag} value={breedTag}>
