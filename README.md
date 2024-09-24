@@ -1,7 +1,7 @@
 # Dog Adoption App
 
 ## Overview
-This project is a dog adoption application built using **React** and bundled with **Webpack**. The app allows users to browse through available dogs for adoption, view their details, and mark dogs as favorites. 
+This project is a dog adoption application built using **React** and **TypeScript**, and bundled with **Webpack**. The app allows users to browse through available dogs for adoption, view their details, and mark dogs as favorites. 
 
 ## Features
 - Browse available dogs for adoption
