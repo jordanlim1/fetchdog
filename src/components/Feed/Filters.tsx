@@ -45,7 +45,7 @@ export default function Filters({breeds, selectedBreeds, handleSelectionChange, 
     if(selectedBreeds.length === 0) {
         return getDogIds()
     }
-    
+
     if(minAge && maxAge)setBreedFilterTags([...selectedBreeds, minAge, maxAge])
    else if(minAge || maxAge) setBreedFilterTags([...selectedBreeds, minAge || maxAge])
     else setBreedFilterTags(selectedBreeds)
@@ -133,7 +133,10 @@ export default function Filters({breeds, selectedBreeds, handleSelectionChange, 
     <div className="search-and-sort">
     <button className="filterSearch" id="filterButton" onClick={handleFilters} >Search</button>
         <label htmlFor="resultsOrders">
-            <select onChange={handleSortDirection}>
+            <select onChange={handleSortDirection} >
+            <option value="" disabled>
+                    Sort results by breed
+                </option>
                 <option value="Ascending">
                     Ascending
                 </option>

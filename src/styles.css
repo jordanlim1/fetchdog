@@ -697,17 +697,19 @@ html, body {
     display:flex;
     align-items: center;
     width: 30%;
-    justify-content: space-between;
+    justify-content: flex-start;
+    flex: 1;
   }
 
   .search-and-sort select{
     border: 1px solid orange;
-    height: 5vh;
+    height: fit-content;
     padding: 12px;
     border-radius: 5px;
-    width: 100%;
+   flex: 1;
     box-sizing: border-box;
     font-family: 'Courier New', Courier, monospace;
+    margin-left: 50px;
     
   }
 
