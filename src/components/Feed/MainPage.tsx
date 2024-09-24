@@ -58,7 +58,7 @@ const breeds = dogBreeds.map((breed: string, idx: number) => {
 })
 
 async function getDogIds(){
-    const res = await fetch(`${BASE_URL}/dogs/search?size=${RESULTS_PER_PAGE}&sort=breed:asc`, {
+    const res = await fetch(`${BASE_URL}/dogs/search?size=${RESULTS_PER_PAGE}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
