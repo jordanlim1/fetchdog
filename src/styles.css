@@ -4,7 +4,7 @@ html, body {
     display: flex;
     flex-direction: column;
     height: 100%;
-    overflow: hidden; /* Prevent unnecessary scrolling */
+    overflow: hidden;
     scroll-behavior: smooth;
 }
 
@@ -26,7 +26,7 @@ html, body {
     flex-basis: 100%;
     align-items: center;
     justify-content: space-between;
-    /* border-bottom: 3px solid orange; */
+   
     font-size: 1em;
     font-family:'Courier New', Courier, monospace;
     background-color: rgb(181, 62, 181);
@@ -74,8 +74,8 @@ html, body {
 }
 
 .image-container img {
-    width: 19vw; /* Relative to viewport width */
-    height: 19vw; /* Keep it circular by maintaining equal width and height */
+    width: 19vw; 
+    height: 19vw;
     border-radius: 50%;
     position: absolute;
     border: 2px solid orange;
@@ -83,7 +83,7 @@ html, body {
     animation: fadeIn 1.5s ease forwards;
   }
   
-  /* Adjust the positioning of each image to create overlap */
+  
   .image-container img:nth-child(1) {
     top: -2vw;
     left: 0;
@@ -111,17 +111,17 @@ html, body {
   @keyframes fadeIn {
     from {
       opacity: 0;
-      transform: translateY(2vw); /* Start slightly below */
+      transform: translateY(2vw); 
     }
     to {
       opacity: 1;
-      transform: translateY(0); /* End at the original position */
+      transform: translateY(0); 
     }
   }
   
 
 .LoginNavbar img, .home-navbar img{
-    max-width: 75px; /* Image will not exceed its container width */
+    max-width: 75px; 
     height: auto; 
     margin-left: 10px;
 }
@@ -144,13 +144,13 @@ html, body {
     justify-content: center;
     width: 30%;
     height: 50%;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Adding the shadow */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     transition: box-shadow 0.3s ease-in-out;
     margin-bottom: 40px;
 }
 
 .credentials-container:hover {
-    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3); 
 }
 
 .credentials-container form{
@@ -166,7 +166,7 @@ html, body {
     border: 1px solid #ccc;  
     box-sizing: border-box;
     font-size: 16px;   
-    margin: 10px auto; /* Centers the elements horizontally */
+    margin: 10px auto; 
     padding: 10px;
     border-radius: 5px;
 
@@ -228,10 +228,10 @@ html, body {
     align-items: center;
     white-space: nowrap;
     overflow: hidden;
-    opacity: 0; /* Start invisible */
+    opacity: 0; 
     animation: typing 5s steps(40, end), blink-caret 0.75s step-end infinite;
-    animation-delay: 1.5s; /* Delay before starting the typing animation */
-    animation-iteration-count: infinite; /* Make the animation repeat */
+    animation-delay: 1.5s;
+    animation-iteration-count: infinite; 
     max-width: fit-content;
 }
 
@@ -245,25 +245,25 @@ html, body {
         opacity: 1;
     }
     50% {
-        width: 70%; /* Typing effect completes by 90% */
+        width: 70%; 
     }
     100% {
         width: 100%;
-        opacity: 1; /* Text stays visible until the fade-out */
+        opacity: 1; 
     }
 }
 
 
 .footer img {
   width: 3vw;
-  height: auto; /* This ensures the aspect ratio is maintained */
+  height: auto; 
   margin-left: 10px; 
 }
 
 .card-holder{
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 3 cards per row */
-  row-gap: 30px; /* Spacing between cards */
+  grid-template-columns: repeat(4, 1fr); 
+  row-gap: 30px; 
   flex: 1;
   justify-items: center;
   overflow-y: auto;
@@ -285,7 +285,7 @@ html, body {
     border: 2px solid rgb(188, 47, 188);
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 20vw; /* Fixed width for the card */
+    width: 20vw; 
     height: 45vh; 
     position: relative;
  
@@ -293,18 +293,18 @@ html, body {
 
 .dog-cards:hover {
     cursor: pointer;
-    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3); 
 }
 
 
 .dog-cards h2, .dog-cards p {
     margin: 1vh 0;
     text-align: center;
-    font-size: 1.2em; /* Dynamic font size based on viewport */
-    overflow-wrap: break-word; /* Ensures text breaks properly */
-    white-space: normal; /* Allows text to wrap to the next line */
-    overflow: hidden; /* Prevent overflow of content */
-    text-overflow: ellipsis; /* Adds ellipsis if text is too long */
+    font-size: 1.2em; 
+    overflow-wrap: break-word;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis; 
     
     
   }
@@ -312,11 +312,11 @@ html, body {
   
 
 .dog-cards img {
-    width: 100%; /* The image takes up the full width of the card */
-    height: 60%; /* Fixed height for all images */
-    object-fit: cover; /* Ensures the image covers the space without distortion */
+    width: 100%; 
+    height: 60%;
+    object-fit: cover; 
     margin-top: 0;
-    border-bottom-right-radius: 20%; /* Curves the bottom of the image */
+    border-bottom-right-radius: 20%; 
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
   }
@@ -335,10 +335,10 @@ html, body {
  
   .select-search-row button {
     border: none;
-    border-radius: 4px; /* Customize border radius */
+    border-radius: 4px; 
     padding: 5px;
     font-size: large;
-    list-style-type: none; /* Remove bullet points */
+    list-style-type: none;
     background-color: white;
     color:black;
   
@@ -375,14 +375,14 @@ html, body {
   }
 
   .select-search-select {
-    visibility: hidden; /* Hide the element but keep it in the DOM */
+    visibility: hidden; 
     max-height: 20vh;
     background-color: white;
     overflow-y: auto;
     position: relative;
     z-index: 2;
-    opacity: 0; /* Make it invisible */
-    transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth transition */
+    opacity: 0; 
+    transition: opacity 0.3s ease, visibility 0.3s ease; 
 }
 
 
@@ -511,16 +511,16 @@ html, body {
     background-color: white;
     opacity: 90%;
     border: none;
-    top: 1vh; /* Position the heart icon 10px from the top */
-    right: 0.7vw; /* Position the heart icon 10px from the right */
+    top: 1vh; 
+    right: 0.7vw; 
    
 }
 
 .favoriteButton:hover {
     cursor: pointer;
-    transform: scale(1.2); /* Slightly increase the size for emphasis */
-    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4); /* Stronger and larger shadow */
-    background-color: #f7f7f7; /* Slightly change the background color */
+    transform: scale(1.2); 
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4); 
+    background-color: #f7f7f7; 
 }
 
 .favorite-page-header{
@@ -534,9 +534,9 @@ html, body {
 
 .favorites-cardholder{
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 3 cards per row */
-    row-gap: 30px; /* Spacing between cards */
-    height: calc(100vh - 27vh); /* Adjust height for header or other elements */
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 30px;
+    height: calc(100vh - 27vh); 
     justify-items: center;
     overflow-y: auto;
     box-sizing: border-box;
@@ -719,7 +719,6 @@ html, body {
     border: 1px solid rgb(181, 62, 181);
 }
 
-/* Add this to your CSS file or inside a style tag */
 .popup {
     position: fixed;
     bottom: 5vh;

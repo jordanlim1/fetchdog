@@ -45,6 +45,7 @@ export default function Filters({breeds, selectedBreeds, handleSelectionChange, 
     if(selectedBreeds.length === 0) {
         return getDogIds()
     }
+    
     if(minAge && maxAge)setBreedFilterTags([...selectedBreeds, minAge, maxAge])
    else if(minAge || maxAge) setBreedFilterTags([...selectedBreeds, minAge || maxAge])
     else setBreedFilterTags(selectedBreeds)
@@ -103,7 +104,7 @@ export default function Filters({breeds, selectedBreeds, handleSelectionChange, 
     }
 
     return(
-      <>
+      <div className="filter">
         <div className="filterByBreed">
                             
         <img className="paw" src={paw} alt="Paw Icon" />
@@ -144,6 +145,6 @@ export default function Filters({breeds, selectedBreeds, handleSelectionChange, 
 
         </label>
         </div>
-    </>
+    </div>
     )
 }

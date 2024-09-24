@@ -10,6 +10,7 @@ import 'react-select-search/style.css';
 import { MainPageProps, Dog } from '../../../utils/interfaces';
 import ActiveFilters from "./ActiveFilters"
 import Popup from "./Popup"
+import { useNavigate } from "react-router"
 
 export default function MainPage({addToFavorites, show}: MainPageProps){
 
@@ -24,15 +25,14 @@ const [nextPageQuery, setNextPageQuery] = useState("")
 const [showPopup, setShowPopup] = useState(false);
 const [activeFilterTags, setActiveFilterTags] = useState(false)
 const [breedFilterTags, setBreedFilterTags] = useState<string[]>([])
+const navigate = useNavigate()
 
 useEffect(() => {
     getDogBreeds()
     getDogIds()
 }, [])
 
-// function backToTop(){
-//     document.getElementById("home-navbar")?.scrollIntoView({   behavior: 'smooth' })
-// }
+
 
 // useEffect(() =>{
 //     backtotop()
@@ -122,8 +122,8 @@ function handleSelectionChange(selectedValue: SelectedOptionValue | SelectedOpti
     return (
             <div className="home-page">
                 <MainNavbar getDogIds={getDogIds} />
-                    <main>
-                    <section className="filter">
+                    <main className="main-container">
+                    <section className="filter-section">
                         <Filters breeds={breeds} selectedBreeds={selectedBreeds}  
                         handleSelectionChange={handleSelectionChange} getDogDetails={getDogDetails} setCurrPage={setCurrPage} 
                         setBreedFilterTags={setBreedFilterTags} 
