@@ -13,7 +13,7 @@ This project is a dog adoption application built using **React** and **TypeScrip
 - Logout functionality
 - Quick Pagination with input
 - Sort results by breed in ascending or descending order
-- Navigate to homepage at any time by clicking logo
+- **Navigate to homepage at any time by clicking fetch logo on the nav bar**
 
 ## Getting Started
 
