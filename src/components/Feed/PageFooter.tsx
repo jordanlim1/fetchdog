@@ -75,8 +75,8 @@ export default function PageFooter({totalPages, nextQuery, setNextQuery, getDogD
           const currentPage = currPage ?? 1;
           let url =''
           // Calculate the 'from' parameter for pagination
-          const from = (currentPage === 1) ? 0 : ((Number(currentPage)) * 12);
-          console.log("from", from)
+          const from = (currentPage === 1) ? 0 : ((Number(currentPage) - 1) * 12);
+          
           // Construct the URL with the calculated 'from' value
           url = `${BASE_URL}/dogs/search?size=12&breeds=${selectedBreeds}&from=${from}`;
 
@@ -116,6 +116,8 @@ export default function PageFooter({totalPages, nextQuery, setNextQuery, getDogD
           // Handle errors
           console.error("Failed to fetch custom page:", error);
         }
+
+        
       }
       
 
@@ -125,14 +127,13 @@ function handleFocus(){
 }
 
 
-function handleBlur(){
-
-    setIsTyping(false)
+async function handleBlur(){
 
    if (Number(currPage === 0) || currPage == "" ) {
     setCurrPage(originalPage);
   } else if (originalPage !== currPage && Number(currPage) >= 1) {
-    getCustomPage();
+    await getCustomPage();
+    setIsTyping(false)
   }
   };
 
