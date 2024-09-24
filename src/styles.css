@@ -68,14 +68,13 @@ html, body {
 .image-container{
     width: 40%;
     height: 50%;
-    margin-bottom: 15%;
     position: relative;
-
+    margin-bottom: 15%;
 }
 
 .image-container img {
-    width: 19vw; 
-    height: 19vw;
+    width: 20vw; 
+    height: 20vw;
     border-radius: 50%;
     position: absolute;
     border: 2px solid orange;
@@ -147,6 +146,7 @@ html, body {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     transition: box-shadow 0.3s ease-in-out;
     margin-bottom: 40px;
+    box-sizing: border-box;
 }
 
 .credentials-container:hover {
@@ -203,10 +203,12 @@ html, body {
 #loginCalltoAction{
     font-weight: bold;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 160%;
+    font-size: 1.7em;
     color: orange;
     text-align: center;
     margin-top: 0;
+    word-wrap: break-word;
+    
 }
 
 
@@ -555,7 +557,8 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 20%;
+    margin-right: 4vw;
+   
   }
 
   .navbar-buttons button:hover, .filterSearch:hover, .pagination button:hover, .match-button button:hover, .modal-overlay button:hover{
