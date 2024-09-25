@@ -54,12 +54,12 @@ export default function PageFooter({totalPages, nextQuery, setNextQuery, getDogD
 
     
 
-    function handleChange(e: any){
+    function handleChange(e: React.ChangeEvent<HTMLInputElement>){
 
         setIsTyping(true)
-        const value = e.target.value;
+        const { value } = e.target;
 
-        if(value > totalPages) {
+        if(Number(value) > totalPages) {
             alert("Please enter a valid page number")
             return -1
         }
@@ -67,7 +67,7 @@ export default function PageFooter({totalPages, nextQuery, setNextQuery, getDogD
        
         if(value === "") setCurrPage("")
 
-        if(value > 0) setCurrPage(Number(value)); // Set the input to the new number
+        if(Number(value) > 0) setCurrPage(Number(value)); // Set the input to the new number
         
     }
 
