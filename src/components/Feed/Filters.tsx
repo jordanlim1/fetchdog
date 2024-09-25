@@ -20,7 +20,7 @@ export default function Filters({breeds, selectedBreeds, handleSelectionChange, 
     function setAges(e: React.ChangeEvent<HTMLInputElement>) {
         const { name, value } = e.target;
       
-        if(Number(value) < 1) {
+        if(value !== "" && Number(value) < 1) {
             alert("Please enter a valid age")
             return - 1
         }
