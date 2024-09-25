@@ -6,7 +6,7 @@ This project is a dog adoption application built using **React** and **TypeScrip
 ## Features
 - Browse available dogs for adoption
 - Mark dogs as favorites
-- Filter dogs by multiple breeds
+- Filter dogs by multiple breeds and sort alphabetically
 - Find your perfect match from your favorites
 - Filter by a minimum and maximum age
 - Login & Logout functionality
