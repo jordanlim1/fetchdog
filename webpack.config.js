@@ -47,7 +47,7 @@ module.exports = {
     },
     devServer: {
         static: {
-          directory: path.join(__dirname, "dist"), //gives an absolute path of the resource that is going to serve
+          directory: path.join(__dirname, "dist"), 
         },
         compress: true,
         open: true,
@@ -56,7 +56,7 @@ module.exports = {
       },
       plugins: [
         new HtmlWebpackPlugin({
-          template: './index.html', // Adjust this path if your HTML file is located elsewhere.
+          template: './index.html', 
         }),
       ],
     
