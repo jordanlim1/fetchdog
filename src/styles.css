@@ -73,8 +73,8 @@ html, body {
 }
 
 .image-container img {
-    width: 20vw; 
-    height: 20vw;
+    width: 60%; 
+    height: 90%;
     border-radius: 50%;
     position: absolute;
     border: 2px solid orange;
