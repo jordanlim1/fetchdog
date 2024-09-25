@@ -17,27 +17,31 @@ export default function Filters({breeds, selectedBreeds, handleSelectionChange, 
 
 
 
-    function setAges(e: React.ChangeEvent<HTMLInputElement>){
-      const {name, value} = e.target
-      if(Number(value) < 0 || Number(value) > 99) {
-        alert("Please enter a valid age")
-        return -1
-      }
-      if(name === "minAge") {
-        if(value > maxAge && value !== '' && maxAge){
-            alert("Min age cannot be larger than max age")
-            return -1
+    function setAges(e: React.ChangeEvent<HTMLInputElement>) {
+        const { name, value } = e.target;
+      
+        // Allow user to freely input values without immediate validation
+        if (name === "minAge") {
+          setMinAge(value);
+        } else if (name === "maxAge") {
+          setMaxAge(value);
         }
-        setMinAge(value)
       }
-      else if (name === "maxAge" ) {
-      if(value < minAge && minAge !== '' && value !== "") {
-        alert("Max age cannot be lower than min age")
-        return -1
-      }
-      setMaxAge(value)
-      }
-    }
+
+
+
+function validateAges() {
+
+   
+    if(Number(minAge) > Number(maxAge) && minAge !== '' && maxAge !== ""){
+                alert("Min age cannot be larger than max age")
+                setMinAge("")
+                return -1
+            }
+   
+    return true;
+  }
+      
 
 
     async function handleFilters(){
@@ -45,6 +49,8 @@ export default function Filters({breeds, selectedBreeds, handleSelectionChange, 
     if(selectedBreeds.length === 0) {
         return getDogIds()
     }
+
+    
 
     if(minAge && maxAge)setBreedFilterTags([...selectedBreeds, minAge, maxAge])
    else if(minAge || maxAge) setBreedFilterTags([...selectedBreeds, minAge || maxAge])
@@ -122,11 +128,11 @@ export default function Filters({breeds, selectedBreeds, handleSelectionChange, 
     <div className="filterByAge">
         <img className="paw" src={paw} alt="Paw Icon" />
         <label htmlFor="minAge">
-        <input placeholder="Min Age" name="minAge" type="number" value={minAge} onChange={setAges} />
+        <input placeholder="Min Age" name="minAge" type="number" value={minAge} onChange={setAges} onBlur={validateAges} />
         </label>
         <span> &mdash; </span>
         <label htmlFor="maxAge">
-        <input placeholder="Max Age" name="maxAge" type="number" value={maxAge} onChange={setAges}/>
+        <input placeholder="Max Age" name="maxAge" type="number" value={maxAge} onChange={setAges} onBlur={validateAges}/>
         </label>
         
     </div>

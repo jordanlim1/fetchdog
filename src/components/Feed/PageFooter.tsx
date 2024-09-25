@@ -131,10 +131,12 @@ async function handleBlur(){
 
    if (Number(currPage === 0) || currPage == "" ) {
     setCurrPage(originalPage);
+
   } else if (originalPage !== currPage && Number(currPage) >= 1) {
     await getCustomPage();
-    setIsTyping(false)
   }
+
+  setIsTyping(false)
   };
 
     return(

@@ -358,12 +358,10 @@ html, body {
     max-height: 20vh;
     overflow-y: scroll;
    margin-left: 0vw !important;
-    padding: 5px;
+    padding-left: 5px;
+    padding-top: 0px;
     box-sizing: border-box;
-    position: relative;
-    margin-top: 0vh !important;
-    
-    
+    position: relative;  
 }
 
 
@@ -380,10 +378,11 @@ html, body {
     visibility: hidden; 
     max-height: 20vh;
     background-color: white;
-    overflow-y: auto;
+    overflow-y: hidden;
     position: relative;
     z-index: 2;
     opacity: 0; 
+   
     transition: opacity 0.3s ease, visibility 0.3s ease; 
 }
 
