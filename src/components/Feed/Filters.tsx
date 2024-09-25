@@ -20,6 +20,11 @@ export default function Filters({breeds, selectedBreeds, handleSelectionChange, 
     function setAges(e: React.ChangeEvent<HTMLInputElement>) {
         const { name, value } = e.target;
       
+        if(Number(value) < 1) {
+            alert("Please enter a valid age")
+            return - 1
+        }
+
         // Allow user to freely input values without immediate validation
         if (name === "minAge") {
           setMinAge(value);
@@ -32,10 +37,7 @@ export default function Filters({breeds, selectedBreeds, handleSelectionChange, 
 
 function validateAges() {
 
-//    if(Number(minAge) < 1) {
-//     alert("Please enter a valid age")
-//     return -1
-//    }
+
 
     if(Number(minAge) > Number(maxAge) && minAge !== '' && maxAge !== ""){
                 alert("Min age cannot be larger than max age")
