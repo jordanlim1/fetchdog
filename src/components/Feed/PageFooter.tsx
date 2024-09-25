@@ -146,9 +146,9 @@ async function handleBlur(){
 
     return(
         <div className="pagination">
-            <button onClick={handlePrevPage} disabled={isTyping}>Prev</button>
+           {Number(currPage) > 1 ? <button onClick={handlePrevPage} disabled={isTyping}>Prev</button> : ""}
             <input onChange={handleChange} value={currPage}   onBlur={handleBlur} onFocus={handleFocus} /> <span> of {totalPages} </span>
-            <button onClick={handleNextPage} disabled={isTyping}>Next</button>
+           {Number(currPage) < totalPages ? <button onClick={handleNextPage} disabled={isTyping}>Next</button> : ""}
         </div>
     )
 }
