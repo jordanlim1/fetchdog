@@ -9,6 +9,8 @@ export default function PageFooter({totalPages, nextQuery, setNextQuery, getDogD
     const [originalPage, setOriginalPage] = useState(0)
     const [isTyping, setIsTyping] = useState(false) //disable user from hitting prev or next page if searching for a page 
 
+
+
     async function handlePrevPage(){
         if(Number(currPage)  <= 1) return -1
         setCurrPage(Number(currPage) - 1)

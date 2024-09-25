@@ -32,7 +32,11 @@ export default function Filters({breeds, selectedBreeds, handleSelectionChange, 
 
 function validateAges() {
 
-   
+//    if(Number(minAge) < 1) {
+//     alert("Please enter a valid age")
+//     return -1
+//    }
+
     if(Number(minAge) > Number(maxAge) && minAge !== '' && maxAge !== ""){
                 alert("Min age cannot be larger than max age")
                 setMinAge("")
@@ -128,11 +132,11 @@ function validateAges() {
     <div className="filterByAge">
         <img className="paw" src={paw} alt="Paw Icon" />
         <label htmlFor="minAge">
-        <input placeholder="Min Age" name="minAge" type="number" value={minAge} onChange={setAges} onBlur={validateAges} />
+        <input placeholder="Min Age" name="minAge" type="number" min= "1" value={minAge} onChange={setAges} onBlur={validateAges} />
         </label>
         <span> &mdash; </span>
         <label htmlFor="maxAge">
-        <input placeholder="Max Age" name="maxAge" type="number" value={maxAge} onChange={setAges} onBlur={validateAges}/>
+        <input placeholder="Max Age" name="maxAge" type="number" min="1" value={maxAge} onChange={setAges} onBlur={validateAges}/>
         </label>
         
     </div>
