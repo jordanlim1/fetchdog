@@ -10,7 +10,6 @@ import 'react-select-search/style.css';
 import { MainPageProps, Dog } from '../../../utils/interfaces';
 import ActiveFilters from "./ActiveFilters"
 import Popup from "./Popup"
-import { useNavigate } from "react-router"
 
 export default function MainPage({addToFavorites, show}: MainPageProps){
 
@@ -22,21 +21,14 @@ const [selectedBreeds, setSelectedBreeds] = useState<string[]>([])
 const [totalPages, setTotalPages] = useState(1)
 const [currPage, setCurrPage] = useState <number | string>(1)
 const [nextPageQuery, setNextPageQuery] = useState("")
-const [showPopup, setShowPopup] = useState(false);
 const [activeFilterTags, setActiveFilterTags] = useState(false)
 const [breedFilterTags, setBreedFilterTags] = useState<string[]>([])
-const navigate = useNavigate()
+
 
 useEffect(() => {
     getDogBreeds()
     getDogIds()
 }, [])
-
-
-
-// useEffect(() =>{
-//     backtotop()
-// }, [dogs])
 
 
 async function getDogBreeds(){
