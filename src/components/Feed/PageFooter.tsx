@@ -61,6 +61,7 @@ export default function PageFooter({totalPages, nextQuery, setNextQuery, getDogD
 
         if(Number(value) > totalPages) {
             alert("Please enter a valid page number")
+            setCurrPage(originalPage)
             return -1
         }
 
