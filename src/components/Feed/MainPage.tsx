@@ -61,7 +61,6 @@ async function getDogIds(){
     //intial page load reset everything
 
     setTotalPages(1)
-    setCurrPage(1)
     setCurrPage(Number(1))
     setSelectedBreeds([])
     setBreedFilterTags([])
