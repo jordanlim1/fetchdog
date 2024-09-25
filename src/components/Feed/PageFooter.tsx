@@ -31,7 +31,7 @@ export default function PageFooter({totalPages, nextQuery, setNextQuery, getDogD
     async function handleNextPage(){
         if(Number(currPage)  >= totalPages) return -1
         
-
+       
         setCurrPage(Number(currPage) + 1)
 
         const res = await fetch(`${BASE_URL}${nextQuery}`, {
@@ -117,7 +117,7 @@ export default function PageFooter({totalPages, nextQuery, setNextQuery, getDogD
           console.error("Failed to fetch custom page:", error);
         }
 
-        
+        setIsTyping(false)
       }
       
 
@@ -136,7 +136,7 @@ async function handleBlur(){
     await getCustomPage();
   }
 
-  setIsTyping(false)
+  
   };
 
     return(

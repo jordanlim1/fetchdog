@@ -39,8 +39,8 @@ const [showPopup, setShowPopup] = useState(false);
     return (
         <Router>
         <Routes>
-          {/* <Route path="/" element={<Login />} /> */}
-          <Route path ='/' element = {<MainPage addToFavorites={addToFavorites} show={showPopup} />} /> 
+          <Route path="/" element={<Login />} />
+          <Route path ='/main' element = {<MainPage addToFavorites={addToFavorites} show={showPopup} />} /> 
           <Route path='/favorites' element={<FavoriteDogs favoriteDogs={favoriteDogs} />}/>
         </Routes>
       </Router>
